@@ -4,88 +4,77 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#b7849a">
-
 <title>Sowa's Daily Life 🌷</title>
 
 <style>
 :root{
   --mauve:#b7849a;
+  --dark:#624653;
   --soft:#ead7df;
   --bg:#fff8fb;
-  --text:#4d3d46;
-  --muted:#8c7b84;
-  --danger:#a94f63;
+  --card:#fffdfd;
   --line:#eadde2;
+  --muted:#927f88;
+  --danger:#a94f63;
   --green:#78927e;
+  --yellow:#c59b55;
 }
 
-*{
-  box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 body{
   margin:0;
+  background:linear-gradient(145deg,#f6e8ee,#fffafd);
+  color:var(--dark);
   font-family:Arial,Helvetica,sans-serif;
-  background:linear-gradient(145deg,#f6e8ee,#fff9fb);
-  color:var(--text);
 }
 
+button,input,textarea,select{
+  font:inherit;
+}
+
+button{cursor:pointer}
+
 .app{
-  max-width:460px;
+  max-width:470px;
   margin:auto;
   min-height:100vh;
-  padding:16px 14px 40px;
+  padding:15px 14px 45px;
 }
 
 .header{
   display:flex;
-  justify-content:space-between;
   align-items:center;
-  margin-bottom:15px;
+  justify-content:space-between;
+  margin-bottom:14px;
 }
 
 .brand{
   font-size:21px;
-  font-weight:bold;
+  font-weight:700;
 }
 
-.mascot{
-  font-size:30px;
-}
+.mascot{font-size:30px}
 
-.page{
-  display:none;
-}
-
-.page.active{
-  display:block;
-}
+.page{display:none}
+.page.active{display:block}
 
 .card{
-  background:#fffdfd;
+  background:var(--card);
   border:1px solid var(--line);
   border-radius:21px;
   padding:15px;
   margin:11px 0;
-  box-shadow:0 5px 20px #b7849a16;
+  box-shadow:0 6px 22px #b7849a18;
 }
 
 .hero{
-  background:linear-gradient(135deg,#ead7df,#f8edf1);
+  background:linear-gradient(135deg,#ead7df,#f9edf2);
 }
 
-h1,h2,h3,p{
-  margin:0;
-}
-
-h1{
-  font-size:24px;
-}
-
-h2{
-  font-size:17px;
-  margin-bottom:10px;
-}
+h1{font-size:24px;margin:0}
+h2{font-size:17px;margin:0 0 10px}
+h3{font-size:14px;margin:0 0 8px}
 
 .small{
   font-size:12px;
@@ -107,21 +96,21 @@ h2{
 
 .nav{
   border:1px solid var(--line);
-  background:white;
+  background:#fff;
   border-radius:18px;
-  padding:16px 10px;
+  padding:16px 11px;
   text-align:left;
-  color:var(--text);
+  color:var(--dark);
   font-weight:bold;
 }
 
 .nav span{
   display:block;
-  font-size:25px;
+  font-size:26px;
   margin-bottom:5px;
 }
 
-.pill{
+.pill,.tag{
   background:var(--soft);
   padding:5px 9px;
   border-radius:20px;
@@ -139,70 +128,9 @@ h2{
 
 .bar{
   height:100%;
-  background:var(--mauve);
   width:0;
-  transition:.3s;
-}
-
-.task{
-  display:flex;
-  align-items:center;
-  gap:9px;
-  padding:9px 0;
-  border-bottom:1px solid #f1e8eb;
-}
-
-.task:last-child{
-  border-bottom:0;
-}
-
-.task input{
-  width:19px;
-  height:19px;
-  accent-color:var(--mauve);
-}
-
-.task .txt{
-  flex:1;
-}
-
-.done{
-  text-decoration:line-through;
-  color:#aaa;
-}
-
-.task select{
-  width:95px;
-  border:1px solid var(--line);
-  border-radius:9px;
-  padding:5px;
-  font-size:11px;
-  background:#fff;
-}
-
-input,
-textarea,
-select{
-  border:1px solid var(--line);
-  border-radius:11px;
-  padding:9px;
-  background:#fff;
-  width:100%;
-}
-
-textarea{
-  min-height:70px;
-  resize:vertical;
-}
-
-.addrow{
-  display:flex;
-  gap:7px;
-  margin-top:10px;
-}
-
-.addrow input{
-  flex:1;
+  background:var(--mauve);
+  transition:.25s;
 }
 
 .btn{
@@ -216,16 +144,77 @@ textarea{
 
 .ghost{
   background:#f4e8ed;
-  color:var(--text);
+  color:var(--dark);
 }
 
-.danger{
-  background:#fff0f2;
-  border-color:#e9b6c0;
+.back{
+  border:0;
+  background:none;
+  color:var(--mauve);
+  font-weight:bold;
+  padding:0 0 9px;
 }
 
-.danger h2{
-  color:var(--danger);
+input,textarea,select{
+  width:100%;
+  border:1px solid var(--line);
+  border-radius:11px;
+  padding:9px;
+  background:white;
+  color:var(--dark);
+}
+
+textarea{
+  min-height:70px;
+  resize:vertical;
+}
+
+.addrow{
+  display:flex;
+  gap:7px;
+  margin-top:10px;
+}
+
+.addrow input{flex:1}
+
+.task{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:9px 0;
+  border-bottom:1px solid #f1e8eb;
+}
+
+.task:last-child{border-bottom:0}
+
+.task input[type="checkbox"]{
+  width:19px;
+  height:19px;
+  accent-color:var(--mauve);
+}
+
+.tasktext{
+  flex:1;
+  min-width:0;
+  word-break:break-word;
+}
+
+.done{
+  text-decoration:line-through;
+  color:#aaa;
+}
+
+.task select{
+  width:90px;
+  padding:5px;
+  font-size:10px;
+}
+
+.delete{
+  border:0;
+  background:none;
+  color:#b78b98;
+  font-size:17px;
 }
 
 .stats{
@@ -235,43 +224,34 @@ textarea{
 }
 
 .stat{
-  padding:12px;
-  border-radius:15px;
   background:#fbf3f6;
+  border-radius:15px;
+  padding:12px;
 }
 
 .num{
-  font-size:20px;
+  font-size:19px;
   font-weight:bold;
 }
 
 .time-row{
   display:grid;
-  grid-template-columns:1.4fr .8fr .8fr;
-  gap:6px;
+  grid-template-columns:1.4fr .8fr .35fr;
   align-items:center;
+  gap:6px;
   margin:7px 0;
 }
 
-.time-row label{
-  font-size:12px;
-}
+.time-row label{font-size:12px}
 
-.time-row input{
-  padding:7px;
-}
+.time-row input{padding:7px}
 
 .chart{
   width:155px;
   height:155px;
   border-radius:50%;
-  margin:8px auto;
-  background:conic-gradient(
-    #b7849a 0 30%,
-    #d7aebe 30% 55%,
-    #ead7df 55% 72%,
-    #c9b6bf 72% 100%
-  );
+  margin:10px auto;
+  background:#ead7df;
   position:relative;
 }
 
@@ -289,89 +269,164 @@ textarea{
 }
 
 .stars{
-  font-size:27px;
-  color:var(--mauve);
+  display:flex;
+  gap:2px;
 }
 
-.starbtn{
-  border:0;
-  background:none;
-  font-size:27px;
-  padding:0 2px;
-}
-
-.back{
+.star{
   border:0;
   background:none;
   color:var(--mauve);
+  font-size:29px;
+  padding:0;
+}
+
+.week-picker{
+  display:flex;
+  gap:7px;
+  align-items:center;
+}
+
+.week-picker button{
+  border:0;
+  background:#f4e8ed;
+  border-radius:10px;
+  padding:8px 11px;
+  color:var(--dark);
   font-weight:bold;
-  padding:0 0 10px;
+}
+
+.week-label{
+  flex:1;
+  text-align:center;
+  font-size:12px;
+  font-weight:bold;
 }
 
 .weekgrid{
   display:grid;
   grid-template-columns:repeat(7,1fr);
-  gap:5px;
+  gap:4px;
+  overflow-x:auto;
 }
 
 .weekcol{
+  min-width:0;
   background:#fbf3f6;
   border-radius:13px;
-  padding:7px;
-  min-height:140px;
+  padding:7px 4px;
+  min-height:160px;
 }
 
-.weekcol b{
-  font-size:12px;
+.weekday{
+  font-size:11px;
+  font-weight:bold;
+}
+
+.date-small{
+  font-size:10px;
+  color:var(--muted);
 }
 
 .mini{
   display:flex;
-  gap:4px;
+  gap:3px;
   margin:7px 0;
-  font-size:10px;
+  font-size:9px;
+  line-height:1.2;
 }
 
 .mini input{
-  width:14px;
-  height:14px;
+  width:13px;
+  height:13px;
+  margin:0;
+  flex:none;
+  accent-color:var(--mauve);
+}
+
+.calendar-head{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:4px;
+  text-align:center;
+  margin-bottom:5px;
+}
+
+.calendar-head div{
+  font-size:10px;
+  color:var(--muted);
+  font-weight:bold;
 }
 
 .calendar{
   display:grid;
   grid-template-columns:repeat(7,1fr);
   gap:5px;
-  text-align:center;
-  font-size:12px;
-}
-
-.calhead{
-  font-weight:bold;
-  color:var(--muted);
 }
 
 .day{
-  padding:8px 2px;
-  border-radius:9px;
   border:1px solid transparent;
   background:white;
+  border-radius:10px;
+  min-height:38px;
+  padding:5px 2px;
+  color:var(--dark);
+  font-size:11px;
+  position:relative;
 }
 
-.today{
-  background:var(--soft);
-  font-weight:bold;
+.day.today{
+  border:2px solid var(--mauve);
 }
 
-.good{
+.day.event{
+  background:#f5e5eb;
+}
+
+.day.good{
   box-shadow:inset 0 -3px var(--green);
 }
 
-.partial{
-  box-shadow:inset 0 -3px #c9a66b;
+.day.partial{
+  box-shadow:inset 0 -3px var(--yellow);
 }
 
-.bad{
-  box-shadow:inset 0 -3px #c57f8e;
+.day.bad{
+  box-shadow:inset 0 -3px var(--danger);
+}
+
+.event-dot{
+  display:block;
+  font-size:8px;
+  margin-top:2px;
+}
+
+.event-list{
+  margin-top:8px;
+}
+
+.event-item{
+  background:#fbf3f6;
+  border-radius:12px;
+  padding:9px;
+  margin:6px 0;
+  font-size:12px;
+}
+
+.danger-card{
+  background:#fff0f2;
+  border-color:#e9b6c0;
+}
+
+.danger-title{
+  color:var(--danger);
+}
+
+.empty{
+  text-align:center;
+  padding:12px;
+  color:var(--muted);
+  font-size:12px;
 }
 
 .modal-bg{
@@ -381,17 +436,25 @@ textarea{
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:22px;
-  z-index:10;
+  padding:20px;
+  z-index:100;
 }
 
 .modal{
-  max-width:390px;
+  max-width:400px;
   width:100%;
-  background:#fffdfd;
+  background:white;
   border-radius:24px;
-  padding:22px;
-  box-shadow:0 15px 50px #0003;
+  padding:21px;
+  box-shadow:0 18px 55px #0004;
+}
+
+.modal-item{
+  padding:10px;
+  background:#fbf3f6;
+  border-radius:12px;
+  margin:7px 0;
+  font-size:13px;
 }
 
 .modal-actions{
@@ -400,23 +463,7 @@ textarea{
   margin-top:15px;
 }
 
-.modal-actions button{
-  flex:1;
-}
-
-.tag{
-  font-size:10px;
-  padding:4px 7px;
-  background:#f4e8ed;
-  border-radius:10px;
-}
-
-.empty{
-  padding:12px;
-  text-align:center;
-  color:var(--muted);
-  font-size:12px;
-}
+.modal-actions button{flex:1}
 
 footer{
   text-align:center;
@@ -426,13 +473,8 @@ footer{
 }
 
 @media(max-width:370px){
-  .task select{
-    display:none;
-  }
-
-  .brand{
-    font-size:18px;
-  }
+  .task select{display:none}
+  .brand{font-size:18px}
 }
 </style>
 </head>
@@ -460,8 +502,7 @@ Let's make today count ✨
 </h1>
 
 <p class="small" style="margin-top:7px">
-<span id="homePending">0</span> tasks pending ·
-Study target <span id="homeStudyTarget">3h</span>
+<span id="homePending">0</span> pending task(s)
 </p>
 
 </div>
@@ -495,13 +536,8 @@ Calendar
 <div class="card">
 
 <div class="row">
-
 <h2>Today's Progress</h2>
-
-<span class="pill" id="homeProgressText">
-0 / 12
-</span>
-
+<span class="pill" id="homeProgressText">0 / 0</span>
 </div>
 
 <div class="progress">
@@ -511,22 +547,44 @@ Calendar
 </div>
 
 
-<div class="card" id="phoneHome"></div>
+<div id="phoneHome" class="card"></div>
 
 
 <div class="card">
 
-<div class="row">
-
 <h2>🐼 Future Reminder</h2>
 
-<span class="tag">accountability</span>
+<p
+id="futureMessage"
+style="font-size:13px;line-height:1.6">
+</p>
 
 </div>
 
-<p id="futureMessage"
-style="line-height:1.55;font-size:13px">
-</p>
+
+<div class="card">
+
+<h2>⚙️ Daily Limits</h2>
+
+<div class="time-row">
+<label>📱 Phone limit</label>
+<input
+id="phoneLimit"
+type="number"
+min="0"
+onchange="changeSettings()">
+<span class="small">min</span>
+</div>
+
+<div class="time-row">
+<label>📚 Study target</label>
+<input
+id="studyTarget"
+type="number"
+min="0"
+onchange="changeSettings()">
+<span class="small">min</span>
+</div>
 
 </div>
 
@@ -546,61 +604,42 @@ style="line-height:1.55;font-size:13px">
 <div class="card">
 
 <div class="row">
-
 <h2>🌷 Daily Plan</h2>
-
-<span class="pill" id="dailyCount">
-0 / 12
-</span>
-
+<span class="pill" id="dailyCount">0 / 12</span>
 </div>
 
-<p class="small" style="margin-bottom:7px">
-Up to 12 total tasks.
+<p class="small">
+Add only the work you actually plan to do today.
 </p>
 
 <div id="dailyTasks"></div>
-
 
 <div class="addrow">
 
 <input
 id="newTask"
 type="text"
-placeholder="Add a task..."
->
+placeholder="Add today's task...">
 
-<button
-class="btn"
-onclick="addTask()">
-＋
-</button>
+<button class="btn" onclick="addTask()">＋</button>
 
 </div>
 
 </div>
 
-
-
-<!-- STUDY -->
 
 <div class="card">
 
 <div class="row">
-
-<h2>📚 Study Time & Subtypes</h2>
-
-<span class="tag">focus</span>
-
+<h2>📚 Study Time</h2>
+<span class="tag">separate tracking</span>
 </div>
 
 <div id="studyRows"></div>
 
-
 <div class="addrow">
 
 <select id="studyType">
-
 <option>Anatomy</option>
 <option>Physiology</option>
 <option>Pharmacology</option>
@@ -610,81 +649,56 @@ onclick="addTask()">
 <option>Viva / Item</option>
 <option>Assignment</option>
 <option>Custom</option>
-
 </select>
 
 <input
 id="studyMin"
 type="number"
-min="0"
-placeholder="minutes"
->
+min="1"
+placeholder="minutes">
 
-<button class="btn" onclick="addStudy()">
-＋
-</button>
+<button class="btn" onclick="addStudy()">＋</button>
 
 </div>
 
 </div>
 
-
-
-<!-- TIME -->
 
 <div class="card">
 
-<h2>⏱️ Where did your day go?</h2>
+<h2>⏱️ Where did my day go?</h2>
 
 <div id="timeRows"></div>
 
-<button
-class="btn ghost"
-style="margin-top:8px"
-onclick="saveData()">
-Save time
-</button>
-
 </div>
 
-
-
-<!-- PIE -->
 
 <div class="card">
 
 <h2>📊 Daily Time Analysis</h2>
 
-<div class="chart" id="pie"></div>
+<div id="pie" class="chart"></div>
 
-<div
-class="legend"
-id="legend">
-</div>
+<div id="legend" class="legend"></div>
 
 </div>
 
-
-
-<!-- RATING -->
 
 <div class="card">
 
 <h2>⭐ Today's Rating</h2>
 
-<div id="stars"></div>
+<div id="stars" class="stars"></div>
 
 <p
-class="small"
 id="ratingText"
+class="small"
 style="margin-top:5px">
+Not rated yet.
 </p>
 
 </div>
 
-
-
-<!-- REFLECTION -->
 
 <div class="card">
 
@@ -696,36 +710,28 @@ What did you plan but not finish?
 
 <textarea
 id="planned"
-placeholder="Write it honestly...">
-</textarea>
+placeholder="Be honest..."></textarea>
 
-
-<p
-class="small"
-style="margin:9px 0 5px">
+<p class="small" style="margin:9px 0 5px">
 Why didn't you do it?
 </p>
 
 <textarea
 id="why"
-placeholder="Phone? Didn't start? Time problem? Other?">
-</textarea>
+placeholder="What actually got in the way?"></textarea>
 
-
-<p style="margin:11px 0 5px;font-size:13px">
-<b>Tomorrow's MUST-DO:</b>
+<p style="font-size:13px;margin:10px 0 5px">
+<b>Tomorrow's MUST-DO</b>
 </p>
 
 <input
 id="mustdo"
-type="text"
-placeholder="One important action"
->
+placeholder="One important action">
 
 <button
 class="btn"
-style="margin-top:10px;width:100%"
-onclick="saveData()">
+style="width:100%;margin-top:10px"
+onclick="saveReflection()">
 Save reflection
 </button>
 
@@ -746,15 +752,28 @@ Save reflection
 
 <div class="card">
 
-<div class="row">
-
 <h2>📅 Weekly Plan</h2>
 
-<span class="pill">
-4–5 tasks / day
-</span>
+<div class="week-picker">
+
+<button onclick="changeWeek(-1)">‹</button>
+
+<div id="weekLabel" class="week-label"></div>
+
+<button onclick="changeWeek(1)">›</button>
 
 </div>
+
+<p
+class="small"
+style="text-align:center;margin-top:7px">
+Select a whole week and plan Saturday → Friday.
+</p>
+
+</div>
+
+
+<div class="card">
 
 <div id="weekPlan"></div>
 
@@ -808,34 +827,42 @@ Save reflection
 
 <div class="row">
 
-<h2>🗓️ Monthly Important Goals</h2>
+<h2>🗓️ Monthly Planner</h2>
 
-<span class="pill" id="mCount">
-0 / 10
-</span>
+<span class="pill" id="mCount">0 / 10</span>
 
 </div>
 
-<p class="small">
-10 important goals for the month.
+<div class="week-picker">
+
+<button onclick="changeMonth(-1)">‹</button>
+
+<div id="monthLabel" class="week-label"></div>
+
+<button onclick="changeMonth(1)">›</button>
+
+</div>
+
+<p
+class="small"
+style="text-align:center;margin-top:7px">
+These 10 goals belong only to this month.
 </p>
 
-<div id="monthlyTasks"></div>
+</div>
 
+
+<div class="card">
+
+<div id="monthlyTasks"></div>
 
 <div class="addrow">
 
 <input
 id="newGoal"
-type="text"
-placeholder="Add important goal..."
->
+placeholder="Add important monthly goal...">
 
-<button
-class="btn"
-onclick="addGoal()">
-＋
-</button>
+<button class="btn" onclick="addGoal()">＋</button>
 
 </div>
 
@@ -847,17 +874,12 @@ onclick="addGoal()">
 <h2>📈 Monthly Overview</h2>
 
 <div class="progress">
-
-<div
-class="bar"
-id="mBar">
-</div>
-
+<div class="bar" id="mBar"></div>
 </div>
 
 <p
-class="small"
 id="mText"
+class="small"
 style="margin-top:8px">
 </p>
 
@@ -880,50 +902,66 @@ style="margin-top:8px">
 
 <div class="row">
 
-<h2>
-📆 <span id="calTitle"></span>
-</h2>
+<h2>📆 Calendar</h2>
 
 <div>
-
-<button
-class="btn ghost"
-onclick="changeMonth(-1)">
-‹
-</button>
-
-<button
-class="btn ghost"
-onclick="changeMonth(1)">
-›
-</button>
-
+<button class="btn ghost" onclick="changeCalendarMonth(-1)">‹</button>
+<button class="btn ghost" onclick="changeCalendarMonth(1)">›</button>
 </div>
 
 </div>
 
+<h3
+id="calTitle"
+style="text-align:center;margin-top:9px">
+</h3>
 
-<div
-class="calendar"
-id="calendarGrid"
-style="margin-top:11px">
+<div class="calendar-head">
+<div>Sun</div>
+<div>Mon</div>
+<div>Tue</div>
+<div>Wed</div>
+<div>Thu</div>
+<div>Fri</div>
+<div>Sat</div>
 </div>
 
-<p
-class="small"
-style="margin-top:12px">
-🟢 good · 🟡 partial · 🔴 needs attention
+<div id="calendarGrid" class="calendar"></div>
+
+</div>
+
+
+<div class="card">
+
+<h2>📌 Important Calendar Events</h2>
+
+<p class="small">
+These are completely separate from Daily Plan.
 </p>
 
+<div id="eventList"></div>
+
+<div class="addrow">
+
+<input
+id="eventDate"
+type="date">
+
+<input
+id="eventText"
+placeholder="Exam / Practical / Important routine...">
+
+<button class="btn" onclick="addEvent()">＋</button>
+
+</div>
+
 </div>
 
 
-<div
-class="card"
-id="selectedDay">
+<div id="selectedDay" class="card">
 
 <div class="empty">
-Select a date to view its summary.
+Select a date to see its calendar events.
 </div>
 
 </div>
@@ -932,7 +970,7 @@ Select a date to view its summary.
 
 
 <footer>
-🌷 Sowa's Daily Life · Your time is your life.
+🌷 Sowa's Daily Life · Protect your time.
 </footer>
 
 </div>
@@ -942,34 +980,26 @@ Select a date to view its summary.
 <!-- POPUP -->
 
 <div
+id="modalBg"
 class="modal-bg"
-id="startupModal"
 style="display:none">
 
 <div class="modal">
 
-<div style="font-size:32px">
-🐼🚨
+<div id="modalIcon" style="font-size:30px">
+🌷
 </div>
 
-<h2
-style="margin-top:7px"
-id="modalTitle">
-</h2>
+<h2 id="modalTitle" style="margin-top:7px"></h2>
 
-<p
-id="modalBody"
-class="small"
-style="margin-top:7px;line-height:1.6">
-</p>
-
+<div id="modalBody"></div>
 
 <div class="modal-actions">
 
 <button
 class="btn ghost"
 onclick="closeModal()">
-I'll check
+Okay
 </button>
 
 <button
@@ -988,1422 +1018,1635 @@ Let's work
 
 <script>
 
-/* =========================
-   DATA
-========================= */
+/* =====================================================
+   STORAGE
+===================================================== */
 
-const KEY="sowaDailyLife_v1";
+const STORAGE_KEY="sowa_daily_life_v2";
 
-const cats=[
-"Study",
-"Phone",
-"Sleep",
-"College",
-"Health",
-"Personal",
-"Other"
+const CATEGORIES=[
+  "Study",
+  "Phone",
+  "Sleep",
+  "College",
+  "Health",
+  "Personal",
+  "Other"
 ];
 
-let todayKey=keyFor(new Date());
-
-let data=load();
-
-let viewMonth=
-new Date(
-new Date().getFullYear(),
-new Date().getMonth(),
-1
-);
-
-
-
-/* =========================
-   STORAGE
-========================= */
-
-function load(){
-
-try{
-
-const saved=
-JSON.parse(
-localStorage.getItem(KEY)
-);
-
-if(saved) return saved;
-
-}catch(e){}
-
-return{
-
-settings:{
-phoneLimit:240,
-studyTarget:180
-},
-
-days:{},
-months:{}
-
+const EMOJIS={
+  Study:"📚",
+  Phone:"📱",
+  Sleep:"😴",
+  College:"🏥",
+  Health:"🏃",
+  Personal:"🌷",
+  Other:"✨"
 };
 
-}
+let app=loadApp();
 
-
-function save(){
-
-localStorage.setItem(
-KEY,
-JSON.stringify(data)
+let currentCalendarMonth=new Date(
+  new Date().getFullYear(),
+  new Date().getMonth(),
+  1
 );
 
+let currentMonthlyMonth=new Date(
+  new Date().getFullYear(),
+  new Date().getMonth(),
+  1
+);
+
+let currentWeekStart=getSaturdayStart(new Date());
+
+
+/* =====================================================
+   STORAGE HELPERS
+===================================================== */
+
+function loadApp(){
+
+  try{
+    const saved=JSON.parse(
+      localStorage.getItem(STORAGE_KEY)
+    );
+
+    if(saved){
+      return normalizeApp(saved);
+    }
+  }catch(e){}
+
+  return {
+    settings:{
+      phoneLimit:240,
+      studyTarget:180
+    },
+    days:{},
+    weeks:{},
+    months:{},
+    events:[]
+  };
 }
 
 
+function normalizeApp(x){
 
-function keyFor(d){
+  if(!x.settings)x.settings={};
 
-return d.getFullYear()+"-"+
-String(d.getMonth()+1).padStart(2,"0")+"-"+
-String(d.getDate()).padStart(2,"0");
+  if(typeof x.settings.phoneLimit!=="number")
+    x.settings.phoneLimit=240;
+
+  if(typeof x.settings.studyTarget!=="number")
+    x.settings.studyTarget=180;
+
+  if(!x.days)x.days={};
+  if(!x.weeks)x.weeks={};
+  if(!x.months)x.months={};
+  if(!Array.isArray(x.events))x.events=[];
+
+  return x;
+}
+
+
+function saveApp(){
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify(app)
+  );
+}
+
+
+/* =====================================================
+   DATE HELPERS
+===================================================== */
+
+function dateKey(date){
+
+  return date.getFullYear()+"-"+
+    String(date.getMonth()+1).padStart(2,"0")+"-"+
+    String(date.getDate()).padStart(2,"0");
 
 }
 
 
+function parseKey(key){
 
-function day(){
+  const [y,m,d]=key.split("-").map(Number);
 
-if(!data.days[todayKey]){
-
-data.days[todayKey]={
-
-tasks:[],
-
-study:[],
-
-time:{
-Study:0,
-Phone:0,
-Sleep:0,
-College:0,
-Health:0,
-Personal:0,
-Other:0
-},
-
-rating:0,
-
-planned:"",
-why:"",
-mustdo:""
-
-};
-
+  return new Date(y,m-1,d);
 }
 
-return data.days[todayKey];
+
+function monthKey(date){
+
+  return date.getFullYear()+"-"+
+    String(date.getMonth()+1).padStart(2,"0");
 
 }
 
 
+function niceDate(date){
 
-/* =========================
-   PAGE
-========================= */
+  return date.toLocaleDateString(
+    undefined,
+    {
+      weekday:"long",
+      day:"numeric",
+      month:"long",
+      year:"numeric"
+    }
+  );
+
+}
+
+
+function getSaturdayStart(date){
+
+  const d=new Date(
+    date.getFullYear(),
+    date.getMonth(),
+    date.getDate()
+  );
+
+  const day=d.getDay();
+
+  const diff=(day+1)%7;
+
+  d.setDate(d.getDate()-diff);
+
+  return d;
+}
+
+
+function weekKey(start){
+
+  return dateKey(start);
+
+}
+
+
+function formatMonth(date){
+
+  return date.toLocaleDateString(
+    undefined,
+    {
+      month:"long",
+      year:"numeric"
+    }
+  );
+
+}
+
+
+function formatShortRange(start){
+
+  const end=new Date(start);
+
+  end.setDate(end.getDate()+6);
+
+  return start.toLocaleDateString(
+    undefined,
+    {day:"numeric",month:"short",year:"numeric"}
+  )
+  +" – "+
+  end.toLocaleDateString(
+    undefined,
+    {day:"numeric",month:"short",year:"numeric"}
+  );
+
+}
+
+
+function formatMinutes(mins){
+
+  mins=Math.max(0,Number(mins)||0);
+
+  const h=Math.floor(mins/60);
+  const m=mins%60;
+
+  if(h===0)return m+"m";
+
+  if(m===0)return h+"h";
+
+  return h+"h "+m+"m";
+}
+
+
+function escapeHtml(value){
+
+  return String(value)
+    .replace(/[&<>"']/g,function(c){
+      return {
+        "&":"&amp;",
+        "<":"&lt;",
+        ">":"&gt;",
+        '"':"&quot;",
+        "'":"&#039;"
+      }[c];
+    });
+
+}
+
+
+/* =====================================================
+   DAY DATA
+===================================================== */
+
+function getDay(key){
+
+  if(!app.days[key]){
+
+    app.days[key]={
+      tasks:[],
+      study:[],
+      time:{
+        Study:0,
+        Phone:0,
+        Sleep:0,
+        College:0,
+        Health:0,
+        Personal:0,
+        Other:0
+      },
+      rating:0,
+      planned:"",
+      why:"",
+      mustdo:""
+    };
+
+  }
+
+  const x=app.days[key];
+
+  if(!Array.isArray(x.tasks))x.tasks=[];
+  if(!Array.isArray(x.study))x.study=[];
+
+  if(!x.time)x.time={};
+
+  CATEGORIES.forEach(c=>{
+    if(typeof x.time[c]!=="number")
+      x.time[c]=0;
+  });
+
+  if(typeof x.rating!=="number")x.rating=0;
+
+  return x;
+}
+
+
+function todayKey(){
+
+  return dateKey(new Date());
+
+}
+
+
+/* =====================================================
+   PAGE NAVIGATION
+===================================================== */
 
 function showPage(id){
 
-document
-.querySelectorAll(".page")
-.forEach(p=>p.classList.remove("active"));
+  document
+    .querySelectorAll(".page")
+    .forEach(p=>p.classList.remove("active"));
 
-document
-.getElementById(id)
-.classList.add("active");
+  document
+    .getElementById(id)
+    .classList.add("active");
 
-renderAll();
+  renderAll();
 
-window.scrollTo(0,0);
-
-}
-
-
-
-/* =========================
-   HELPERS
-========================= */
-
-function escapeHtml(s){
-
-return String(s)
-.replace(/[&<>"']/g,m=>({
-
-"&":"&amp;",
-"<":"&lt;",
-">":"&gt;",
-'"':"&quot;",
-"'":"&#039;"
-
-}[m]));
+  window.scrollTo(0,0);
 
 }
 
 
+/* =====================================================
+   HOME
+===================================================== */
 
-function fmtMin(m){
+function renderHome(){
 
-m=Math.max(0,Number(m)||0);
+  const x=getDay(todayKey());
 
-return Math.floor(m/60)+"h "+
-String(m%60).padStart(2,"0")+"m";
+  const total=x.tasks.length;
+
+  const done=x.tasks.filter(
+    t=>t.done
+  ).length;
+
+  const pending=total-done;
+
+  const percent=
+    total ? Math.round(done/total*100) : 0;
+
+  const phone=x.time.Phone||0;
+
+  const limit=app.settings.phoneLimit;
+
+
+  document.getElementById("homeDate")
+    .textContent=niceDate(new Date());
+
+
+  document.getElementById("homePending")
+    .textContent=pending;
+
+
+  document.getElementById("homeProgressText")
+    .textContent=done+" / "+total;
+
+
+  document.getElementById("homeBar")
+    .style.width=percent+"%";
+
+
+  document.getElementById("phoneLimit")
+    .value=limit;
+
+
+  document.getElementById("studyTarget")
+    .value=app.settings.studyTarget;
+
+
+  const phoneBox=
+    document.getElementById("phoneHome");
+
+
+  phoneBox.className=
+    "card "+(phone>limit?"danger-card":"");
+
+
+  phoneBox.innerHTML=`
+
+    <h2 class="${phone>limit?"danger-title":""}">
+      ${phone>limit?"🚨":"📱"} Phone Time
+    </h2>
+
+    <p>
+      <b>${formatMinutes(phone)}</b>
+      today · limit
+      <b>${formatMinutes(limit)}</b>
+    </p>
+
+    <p class="small" style="margin-top:6px">
+      ${
+        phone>limit
+        ?
+        "You are "+formatMinutes(phone-limit)+
+        " over your limit. Protect the rest of today."
+        :
+        formatMinutes(limit-phone)+
+        " remaining before your limit."
+      }
+    </p>
+
+  `;
+
+
+  let futureMessage;
+
+  if(total===0){
+
+    futureMessage=
+      "Your plan is empty. Decide what actually matters today, then start.";
+
+  }else if(pending>0){
+
+    futureMessage=
+      "You have "+pending+
+      " unfinished task(s). If you keep postponing them, they will compete with tomorrow's work.";
+
+  }else{
+
+    futureMessage=
+      "You finished today's planned tasks. Keep tomorrow from becoming another overloaded list.";
+
+  }
+
+
+  document.getElementById("futureMessage")
+    .textContent=futureMessage;
 
 }
 
 
+function changeSettings(){
 
-function dateLabel(d){
+  const phone=Number(
+    document.getElementById("phoneLimit").value
+  );
 
-return d.toLocaleDateString(
-undefined,
-{
-weekday:"long",
-day:"numeric",
-month:"long",
-year:"numeric"
+  const study=Number(
+    document.getElementById("studyTarget").value
+  );
+
+  app.settings.phoneLimit=Math.max(0,phone);
+  app.settings.studyTarget=Math.max(0,study);
+
+  saveApp();
+
+  renderHome();
+
 }
-);
-
-}
 
 
-
-/* =========================
+/* =====================================================
    DAILY TASKS
-========================= */
-
-function ensureTasks(){
-
-const x=day();
-
-if(!x.tasks.length){
-
-x.tasks=[
-
-{text:"Revise an important topic",done:false,cat:"Study"},
-
-{text:"Prepare for Item / Viva",done:false,cat:"Study"},
-
-{text:"Complete assignment",done:false,cat:"Study"},
-
-{text:"College work",done:false,cat:"College"},
-
-{text:"Revision",done:false,cat:"Study"},
-
-{text:"Exercise / movement",done:false,cat:"Health"},
-
-{text:"Organize notes",done:false,cat:"Personal"},
-
-{text:"Read tomorrow's topic",done:false,cat:"Study"},
-
-{text:"Personal work",done:false,cat:"Personal"},
-
-{text:"Self-care",done:false,cat:"Health"},
-
-{text:"Important small task",done:false,cat:"Other"},
-
-{text:"Extra task",done:false,cat:"Other"}
-
-];
-
-}
-
-}
-
-
+===================================================== */
 
 function addTask(){
 
-let input=
-document.getElementById("newTask");
+  const input=
+    document.getElementById("newTask");
 
-let value=input.value.trim();
+  const text=input.value.trim();
 
-if(!value)return;
+  if(!text)return;
 
-if(day().tasks.length>=12){
+  const x=getDay(todayKey());
 
-alert("Daily task limit is 12.");
+  if(x.tasks.length>=12){
 
-return;
+    alert("Daily Plan can contain a maximum of 12 tasks.");
+
+    return;
+  }
+
+  x.tasks.push({
+    text:text,
+    done:false,
+    cat:"Other"
+  });
+
+  input.value="";
+
+  saveApp();
+
+  renderDaily();
+  renderHome();
 
 }
-
-day().tasks.push({
-
-text:value,
-done:false,
-cat:"Other"
-
-});
-
-input.value="";
-
-save();
-
-renderAll();
-
-}
-
 
 
 function toggleTask(i){
 
-day().tasks[i].done=
-!day().tasks[i].done;
+  const x=getDay(todayKey());
 
-save();
+  if(!x.tasks[i])return;
 
-renderAll();
+  x.tasks[i].done=
+    !x.tasks[i].done;
 
-}
+  saveApp();
 
-
-
-function changeCat(i,v){
-
-day().tasks[i].cat=v;
-
-save();
+  renderDaily();
+  renderHome();
 
 }
 
 
+function deleteTask(i){
 
-/* =========================
+  const x=getDay(todayKey());
+
+  x.tasks.splice(i,1);
+
+  saveApp();
+
+  renderDaily();
+  renderHome();
+
+}
+
+
+function changeTaskCategory(i,value){
+
+  const x=getDay(todayKey());
+
+  if(x.tasks[i]){
+
+    x.tasks[i].cat=value;
+
+    saveApp();
+
+  }
+
+}
+
+
+/* =====================================================
    STUDY
-========================= */
+===================================================== */
 
 function addStudy(){
 
-let type=
-document.getElementById("studyType").value;
+  const type=
+    document.getElementById("studyType").value;
 
-let mins=
-Number(
-document.getElementById("studyMin").value
-)||0;
+  const mins=Number(
+    document.getElementById("studyMin").value
+  );
 
-if(mins<=0)return;
+  if(!mins || mins<1)return;
 
-day().study.push({
-type:type,
-mins:mins
-});
+  const x=getDay(todayKey());
 
-document.getElementById("studyMin").value="";
+  x.study.push({
+    type:type,
+    mins:mins
+  });
 
-save();
+  x.time.Study=
+    x.study.reduce(
+      (sum,s)=>sum+Number(s.mins||0),
+      0
+    );
 
-renderAll();
+  document.getElementById("studyMin").value="";
+
+  saveApp();
+
+  renderDaily();
 
 }
-
 
 
 function deleteStudy(i){
 
-day().study.splice(i,1);
+  const x=getDay(todayKey());
 
-save();
+  x.study.splice(i,1);
 
-renderAll();
+  x.time.Study=
+    x.study.reduce(
+      (sum,s)=>sum+Number(s.mins||0),
+      0
+    );
 
-}
+  saveApp();
 
-
-
-/* =========================
-   TIME
-========================= */
-
-function setTime(c,v){
-
-day().time[c]=
-Number(v)||0;
-
-save();
-
-renderAnalysis();
-
-renderHome();
+  renderDaily();
 
 }
 
 
+/* =====================================================
+   DAILY TIME
+===================================================== */
 
-/* =========================
+function setTime(category,value){
+
+  const x=getDay(todayKey());
+
+  x.time[category]=
+    Math.max(0,Number(value)||0);
+
+  if(category==="Study" && x.study.length){
+
+    // Manual Study time and subtype total remain consistent:
+    // study time is represented by subtype entries.
+  }
+
+  saveApp();
+
+  renderDaily();
+  renderHome();
+
+}
+
+
+/* =====================================================
    DAILY RENDER
-========================= */
+===================================================== */
 
 function renderDaily(){
 
-ensureTasks();
+  const x=getDay(todayKey());
 
-let x=day();
+  const total=x.tasks.length;
 
-let done=
-x.tasks.filter(t=>t.done).length;
-
-
-document.getElementById(
-"dailyCount"
-).textContent=
-done+" / "+x.tasks.length;
+  const done=x.tasks.filter(
+    t=>t.done
+  ).length;
 
 
-
-document.getElementById(
-"dailyTasks"
-).innerHTML=
-
-x.tasks.map((t,i)=>`
-
-<div class="task">
-
-<input
-type="checkbox"
-${t.done?"checked":""}
-onchange="toggleTask(${i})">
-
-<span class="txt ${t.done?"done":""}">
-${escapeHtml(t.text)}
-</span>
-
-<select
-onchange="changeCat(${i},this.value)">
-
-${cats.map(c=>`
-
-<option
-${t.cat===c?"selected":""}>
-${c}
-</option>
-
-`).join("")}
-
-</select>
-
-</div>
-
-`).join("");
+  document.getElementById("dailyCount")
+    .textContent=done+" / "+total;
 
 
-
-let study=
-x.study||[];
-
-
-document.getElementById(
-"studyRows"
-).innerHTML=
-
-study.length?
-
-study.map((s,i)=>`
-
-<div
-class="row"
-style="padding:7px 0;border-bottom:1px solid #f1e8eb">
-
-<span>
-📚 ${escapeHtml(s.type)}
-</span>
-
-<span>
-
-<b>${fmtMin(s.mins)}</b>
-
-<button
-class="btn ghost"
-onclick="deleteStudy(${i})">
-×
-</button>
-
-</span>
-
-</div>
-
-`).join("")
-
-:
-
-`<div class="empty">
-No study time recorded yet.
-</div>`;
+  const taskBox=
+    document.getElementById("dailyTasks");
 
 
+  if(!total){
 
-const labels=[
-"Study",
-"Phone",
-"Sleep",
-"College",
-"Health",
-"Personal",
-"Other"
-];
+    taskBox.innerHTML=
+      `<div class="empty">
+        No tasks yet. Add the work you actually want to complete today. 🌷
+      </div>`;
+
+  }else{
+
+    taskBox.innerHTML=
+      x.tasks.map((t,i)=>`
+
+        <div class="task">
+
+          <input
+            type="checkbox"
+            ${t.done?"checked":""}
+            onchange="toggleTask(${i})">
+
+          <span
+            class="tasktext ${t.done?"done":""}">
+            ${escapeHtml(t.text)}
+          </span>
+
+          <select
+            onchange="changeTaskCategory(${i},this.value)">
+
+            ${CATEGORIES.map(c=>`
+              <option
+                value="${c}"
+                ${t.cat===c?"selected":""}>
+                ${c}
+              </option>
+            `).join("")}
+
+          </select>
+
+          <button
+            class="delete"
+            onclick="deleteTask(${i})">
+            ×
+          </button>
+
+        </div>
+
+      `).join("");
+
+  }
 
 
-document.getElementById(
-"timeRows"
-).innerHTML=
-
-labels.map(c=>`
-
-<div class="time-row">
-
-<label>
-
-${c==="Study"?"📚":
-c==="Phone"?"📱":
-c==="Sleep"?"😴":
-c==="College"?"🏥":
-c==="Health"?"🏃":
-c==="Personal"?"🌷":"✨"}
-
-${c}
-
-</label>
-
-<input
-type="number"
-min="0"
-value="${x.time[c]||0}"
-onchange="setTime('${c}',this.value)">
-
-<span class="small">
-min
-</span>
-
-</div>
-
-`).join("");
+  const studyBox=
+    document.getElementById("studyRows");
 
 
-renderAnalysis();
+  if(!x.study.length){
 
-renderStars();
+    studyBox.innerHTML=
+      `<div class="empty">
+        No study time recorded yet.
+      </div>`;
 
-document.getElementById("planned").value=
-x.planned||"";
+  }else{
 
-document.getElementById("why").value=
-x.why||"";
+    studyBox.innerHTML=
+      x.study.map((s,i)=>`
 
-document.getElementById("mustdo").value=
-x.mustdo||"";
+        <div
+          class="row"
+          style="padding:7px 0;border-bottom:1px solid #f1e8eb">
+
+          <span>
+            📚 ${escapeHtml(s.type)}
+          </span>
+
+          <span>
+            <b>${formatMinutes(s.mins)}</b>
+
+            <button
+              class="delete"
+              onclick="deleteStudy(${i})">
+              ×
+            </button>
+          </span>
+
+        </div>
+
+      `).join("");
+
+  }
+
+
+  document.getElementById("timeRows")
+    .innerHTML=CATEGORIES.map(c=>`
+
+      <div class="time-row">
+
+        <label>
+          ${EMOJIS[c]} ${c}
+        </label>
+
+        <input
+          type="number"
+          min="0"
+          value="${x.time[c]||0}"
+          onchange="setTime('${c}',this.value)">
+
+        <span class="small">min</span>
+
+      </div>
+
+    `).join("");
+
+
+  document.getElementById("planned")
+    .value=x.planned||"";
+
+  document.getElementById("why")
+    .value=x.why||"";
+
+  document.getElementById("mustdo")
+    .value=x.mustdo||"";
+
+
+  renderDailyAnalysis();
+  renderRating();
 
 }
 
 
+function renderDailyAnalysis(){
 
-/* =========================
-   PIE CHART
-========================= */
+  const x=getDay(todayKey());
 
-function renderAnalysis(){
+  const values=CATEGORIES.map(
+    c=>Number(x.time[c]||0)
+  );
 
-let x=day();
-
-let t=x.time;
-
-let total=
-Object.values(t)
-.reduce((a,b)=>a+Number(b||0),0);
+  const total=
+    values.reduce((a,b)=>a+b,0);
 
 
-let cur=0;
-
-const pie=
-document.getElementById("pie");
+  const pie=document.getElementById("pie");
 
 
-if(total){
+  if(!total){
 
-const stops=[];
+    pie.style.background=
+      "conic-gradient(#ead7df 0 100%)";
 
-const colors=[
-"#b7849a",
-"#d7aebe",
-"#ead7df",
-"#c9b6bf",
-"#9e8b94",
-"#c2a5b1",
-"#e0ccd4"
-];
+  }else{
 
-cats.forEach((c,i)=>{
+    const palette=[
+      "#b7849a",
+      "#d7aebe",
+      "#ead7df",
+      "#c9b6bf",
+      "#9e8b94",
+      "#c2a5b1",
+      "#e0ccd4"
+    ];
 
-let n=
-(Number(t[c])||0)/
-total*100;
+    let start=0;
 
-stops.push(
-colors[i]+" "+
-cur+"% "+
-(cur+n)+"%"
-);
+    const stops=[];
 
-cur+=n;
+    CATEGORIES.forEach((c,i)=>{
 
-});
+      const amount=
+        Number(x.time[c]||0)/
+        total*100;
 
-pie.style.background=
-"conic-gradient("+stops.join(",")+")";
+      const end=start+amount;
 
-}else{
+      stops.push(
+        palette[i]+" "+start+"% "+end+"%"
+      );
 
-pie.style.background=
-"conic-gradient(#ead7df 0 100%)";
+      start=end;
 
-}
+    });
 
+    pie.style.background=
+      "conic-gradient("+stops.join(",")+")";
 
-const emojis={
-Study:"📚",
-Phone:"📱",
-Sleep:"😴",
-College:"🏥",
-Health:"🏃",
-Personal:"🌷",
-Other:"✨"
-};
+  }
 
 
-document.getElementById(
-"legend"
-).innerHTML=
+  document.getElementById("legend")
+    .innerHTML=CATEGORIES.map(c=>
 
-cats.map(c=>
+      `${EMOJIS[c]} ${c} —
+      <b>${formatMinutes(x.time[c]||0)}</b>`
 
-`${emojis[c]} ${c} —
-<b>${fmtMin(t[c]||0)}</b>`
-
-).join("<br>");
+    ).join("<br>");
 
 }
 
 
+function renderRating(){
 
-/* =========================
-   RATING
-========================= */
+  const r=getDay(todayKey()).rating;
 
-function renderStars(){
+  document.getElementById("stars")
+    .innerHTML=[1,2,3,4,5].map(i=>`
 
-let r=day().rating;
+      <button
+        class="star"
+        onclick="setRating(${i})">
+        ${i<=r?"★":"☆"}
+      </button>
 
-document.getElementById(
-"stars"
-).innerHTML=
+    `).join("");
 
-[1,2,3,4,5].map(i=>`
-
-<button
-class="starbtn"
-onclick="setRating(${i})">
-
-${i<=r?"★":"☆"}
-
-</button>
-
-`).join("");
-
-document.getElementById(
-"ratingText"
-).textContent=
-
-r?
-`Overall day rating: ${r}/5`
-:
-"Tap a star to rate your day.";
+  document.getElementById("ratingText")
+    .textContent=
+      r
+      ? "Today's rating: "+r+"/5"
+      : "Rate how much of the day you actually used.";
 
 }
-
 
 
 function setRating(r){
 
-day().rating=r;
+  getDay(todayKey()).rating=r;
 
-save();
+  saveApp();
 
-renderStars();
-
-}
-
-
-
-/* =========================
-   SAVE REFLECTION
-========================= */
-
-function saveData(){
-
-let x=day();
-
-x.planned=
-document.getElementById("planned").value;
-
-x.why=
-document.getElementById("why").value;
-
-x.mustdo=
-document.getElementById("mustdo").value;
-
-save();
-
-alert("🌷 Saved.");
-
-renderAll();
+  renderRating();
 
 }
 
 
+function saveReflection(){
 
-/* =========================
-   HOME
-========================= */
+  const x=getDay(todayKey());
 
-function renderHome(){
+  x.planned=
+    document.getElementById("planned").value;
 
-let x=day();
+  x.why=
+    document.getElementById("why").value;
 
-let done=
-x.tasks.filter(t=>t.done).length;
+  x.mustdo=
+    document.getElementById("mustdo").value;
 
-let pending=
-x.tasks.length-done;
+  saveApp();
 
-let percent=
-x.tasks.length?
-Math.round(
-done/x.tasks.length*100
-):0;
-
-let phone=
-x.time.Phone||0;
-
-let limit=
-data.settings.phoneLimit;
-
-
-document.getElementById(
-"homeDate"
-).textContent=
-dateLabel(new Date()).toUpperCase();
-
-
-document.getElementById(
-"homePending"
-).textContent=
-pending;
-
-
-document.getElementById(
-"homeStudyTarget"
-).textContent=
-fmtMin(data.settings.studyTarget);
-
-
-document.getElementById(
-"homeProgressText"
-).textContent=
-done+" / "+x.tasks.length;
-
-
-document.getElementById(
-"homeBar"
-).style.width=
-percent+"%";
-
-
-let phoneBox=
-document.getElementById("phoneHome");
-
-phoneBox.className=
-"card "+(phone>limit?"danger":"");
-
-
-phoneBox.innerHTML=`
-
-<h2>
-${phone>limit?"🚨":"📱"}
-Phone Time
-</h2>
-
-<p>
-<b>${fmtMin(phone)}</b>
-today · limit
-<b>${fmtMin(limit)}</b>
-</p>
-
-<p
-class="small"
-style="margin-top:5px">
-
-${
-phone>limit
-?
-"Danger: you are over your limit by "+
-fmtMin(phone-limit)+"."
-:
-"You have "+
-fmtMin(limit-phone)+
-" left before the limit."
-}
-
-</p>
-
-`;
-
-
-let message;
-
-if(percent<50){
-
-message=
-"Your plan is ahead of you. Don't let another scroll decide your day.";
-
-}else if(phone>limit){
-
-message=
-"You already crossed your phone limit. Protect the rest of today.";
-
-}else{
-
-message=
-"Good. Keep the next promise you made to yourself.";
+  alert("🌷 Reflection saved.");
 
 }
 
 
-document.getElementById(
-"futureMessage"
-).textContent=
-message;
-
-}
-
-
-
-/* =========================
+/* =====================================================
    WEEKLY
-========================= */
+===================================================== */
+
+function changeWeek(amount){
+
+  currentWeekStart.setDate(
+    currentWeekStart.getDate()+
+    amount*7
+  );
+
+  renderWeekly();
+
+}
+
 
 function renderWeekly(){
 
-const names=[
-"Sat","Sun","Mon","Tue",
-"Wed","Thu","Fri"
-];
+  const start=currentWeekStart;
 
-let today=new Date();
+  const end=new Date(start);
 
-let start=new Date(today);
-
-let diff=
-(today.getDay()+1)%7;
-
-start.setDate(
-today.getDate()-diff
-);
+  end.setDate(end.getDate()+6);
 
 
-let html=
-'<div class="weekgrid">';
-
-let total=0;
-let done=0;
-let study=0;
-let phone=0;
+  document.getElementById("weekLabel")
+    .textContent=formatShortRange(start);
 
 
-for(let i=0;i<7;i++){
-
-let d=
-new Date(start);
-
-d.setDate(
-start.getDate()+i
-);
-
-let k=keyFor(d);
-
-let x=
-data.days[k]||
-{
-tasks:[],
-study:[],
-time:{}
-};
-
-let tasks=
-x.tasks||[];
-
-total+=tasks.length;
-
-done+=
-tasks.filter(t=>t.done).length;
-
-study+=
-(x.study||[])
-.reduce(
-(a,s)=>a+Number(s.mins||0),
-0
-);
-
-phone+=
-Number(
-(x.time||{}).Phone||0
-);
+  const names=[
+    "Sat","Sun","Mon",
+    "Tue","Wed","Thu","Fri"
+  ];
 
 
-html+=`
+  let html='<div class="weekgrid">';
 
-<div class="weekcol">
-
-<b>
-${names[i]}<br>
-<span class="small">
-${d.getDate()}
-</span>
-</b>
-
-${
-tasks.slice(0,5).map((t,j)=>`
-
-<div class="mini">
-
-<input
-type="checkbox"
-${t.done?"checked":""}
-onchange="weekToggle('${k}',${j})">
-
-<span
-class="${t.done?"done":""}">
-${escapeHtml(t.text)}
-</span>
-
-</div>
-
-`).join("")
-}
-
-</div>
-
-`;
-
-}
-
-html+="</div>";
-
-document.getElementById(
-"weekPlan"
-).innerHTML=html;
+  let total=0;
+  let done=0;
+  let study=0;
+  let phone=0;
 
 
-document.getElementById(
-"wTasks"
-).textContent=
-done+" / "+total;
+  for(let i=0;i<7;i++){
+
+    const d=new Date(start);
+
+    d.setDate(start.getDate()+i);
+
+    const key=dateKey(d);
+
+    const x=getDay(key);
+
+    total+=x.tasks.length;
+
+    done+=x.tasks.filter(
+      t=>t.done
+    ).length;
+
+    study+=x.study.reduce(
+      (a,s)=>a+Number(s.mins||0),
+      0
+    );
+
+    phone+=Number(x.time.Phone||0);
 
 
-document.getElementById(
-"wStudy"
-).textContent=
-fmtMin(study);
+    html+=`
+
+      <div class="weekcol">
+
+        <div class="weekday">
+          ${names[i]}
+        </div>
+
+        <div class="date-small">
+          ${d.getDate()}
+        </div>
+
+        ${
+          x.tasks.length
+          ?
+          x.tasks.map((t,j)=>`
+
+            <div class="mini">
+
+              <input
+                type="checkbox"
+                ${t.done?"checked":""}
+                onchange="weekToggle('${key}',${j})">
+
+              <span
+                class="${t.done?"done":""}">
+                ${escapeHtml(t.text)}
+              </span>
+
+            </div>
+
+          `).join("")
+          :
+          `<div
+            style="font-size:9px;color:#aa9ba1;margin-top:9px">
+            No tasks
+          </div>`
+        }
+
+      </div>
+
+    `;
+
+  }
+
+  html+="</div>";
+
+  document.getElementById("weekPlan")
+    .innerHTML=html;
 
 
-document.getElementById(
-"wPhone"
-).textContent=
-fmtMin(phone);
+  document.getElementById("wTasks")
+    .textContent=done+" / "+total;
 
+  document.getElementById("wStudy")
+    .textContent=formatMinutes(study);
 
-document.getElementById(
-"wPct"
-).textContent=
-total?
-Math.round(done/total*100)+"%"
-:
-"0%";
+  document.getElementById("wPhone")
+    .textContent=formatMinutes(phone);
+
+  document.getElementById("wPct")
+    .textContent=
+      total
+      ? Math.round(done/total*100)+"%"
+      : "0%";
 
 }
 
 
+function weekToggle(key,index){
 
-function weekToggle(k,i){
+  const x=getDay(key);
 
-if(!data.days[k])return;
+  if(!x.tasks[index])return;
 
-data.days[k].tasks[i].done=
-!data.days[k].tasks[i].done;
+  x.tasks[index].done=
+    !x.tasks[index].done;
 
-save();
+  saveApp();
 
-renderWeekly();
+  renderWeekly();
+
+  if(key===todayKey()){
+    renderHome();
+  }
 
 }
 
 
-
-/* =========================
+/* =====================================================
    MONTHLY
-========================= */
+===================================================== */
 
-function monthKey(){
+function getMonthGoals(){
 
-return viewMonth.getFullYear()+"-"+
-String(viewMonth.getMonth()+1).padStart(2,"0");
+  const key=monthKey(currentMonthlyMonth);
 
-}
+  if(!app.months[key]){
 
+    app.months[key]=
+      Array.from(
+        {length:10},
+        ()=>({
+          text:"",
+          done:false
+        })
+      );
 
+  }
 
-function month(){
-
-let k=monthKey();
-
-if(!data.months[k]){
-
-data.months[k]=
-Array.from(
-{length:10},
-()=>({
-text:"",
-done:false
-})
-);
+  return app.months[key];
 
 }
 
-return data.months[k];
+
+function changeMonth(amount){
+
+  currentMonthlyMonth.setMonth(
+    currentMonthlyMonth.getMonth()+amount
+  );
+
+  renderMonthly();
 
 }
-
 
 
 function addGoal(){
 
-let input=
-document.getElementById("newGoal");
+  const input=
+    document.getElementById("newGoal");
 
-let value=input.value.trim();
+  const text=input.value.trim();
 
-if(!value)return;
+  if(!text)return;
 
-let m=month();
+  const goals=getMonthGoals();
 
-let slot=
-m.find(g=>!g.text);
+  const empty=goals.find(
+    g=>!g.text
+  );
 
-if(!slot){
+  if(!empty){
 
-alert(
-"Monthly limit is 10 goals."
-);
+    alert("This month already has 10 goals.");
 
-return;
+    return;
+  }
 
-}
+  empty.text=text;
 
-slot.text=value;
+  input.value="";
 
-input.value="";
+  saveApp();
 
-save();
-
-renderMonthly();
+  renderMonthly();
 
 }
-
-
-
-function renderMonthly(){
-
-let m=month();
-
-let done=
-m.filter(g=>g.done).length;
-
-document.getElementById(
-"mCount"
-).textContent=
-done+" / 10";
-
-
-document.getElementById(
-"monthlyTasks"
-).innerHTML=
-
-m.map((g,i)=>`
-
-<div class="task">
-
-<input
-type="checkbox"
-${g.done?"checked":""}
-${g.text?"":"disabled"}
-onchange="goalToggle(${i})">
-
-<span
-class="txt ${g.done?"done":""}">
-
-${
-g.text
-?
-escapeHtml(g.text)
-:
-'<span class="small">Empty goal box</span>'
-}
-
-</span>
-
-</div>
-
-`).join("");
-
-
-document.getElementById(
-"mBar"
-).style.width=
-done*10+"%";
-
-
-document.getElementById(
-"mText"
-).textContent=
-done+
-" of 10 important goals completed.";
-
-}
-
 
 
 function goalToggle(i){
 
-month()[i].done=
-!month()[i].done;
+  const goals=getMonthGoals();
 
-save();
+  if(!goals[i].text)return;
 
-renderMonthly();
+  goals[i].done=
+    !goals[i].done;
+
+  saveApp();
+
+  renderMonthly();
+
+}
+
+
+function deleteGoal(i){
+
+  const goals=getMonthGoals();
+
+  goals[i]={
+    text:"",
+    done:false
+  };
+
+  saveApp();
+
+  renderMonthly();
 
 }
 
 
+function renderMonthly(){
 
-/* =========================
-   CALENDAR
-========================= */
+  const goals=getMonthGoals();
 
-function changeMonth(n){
+  const done=goals.filter(
+    g=>g.done
+  ).length;
 
-viewMonth.setMonth(
-viewMonth.getMonth()+n
-);
 
-renderCalendar();
+  document.getElementById("monthLabel")
+    .textContent=
+      formatMonth(currentMonthlyMonth);
+
+
+  document.getElementById("mCount")
+    .textContent=done+" / 10";
+
+
+  document.getElementById("mBar")
+    .style.width=(done*10)+"%";
+
+
+  document.getElementById("mText")
+    .textContent=
+      done+" of 10 goals completed for "+
+      formatMonth(currentMonthlyMonth)+".";
+
+
+  document.getElementById("monthlyTasks")
+    .innerHTML=goals.map((g,i)=>`
+
+      <div class="task">
+
+        <input
+          type="checkbox"
+          ${g.done?"checked":""}
+          ${g.text?"":"disabled"}
+          onchange="goalToggle(${i})">
+
+        <span
+          class="tasktext ${g.done?"done":""}">
+          ${
+            g.text
+            ?
+            escapeHtml(g.text)
+            :
+            '<span class="small">Empty goal box</span>'
+          }
+        </span>
+
+        ${
+          g.text
+          ?
+          `<button
+             class="delete"
+             onclick="deleteGoal(${i})">
+             ×
+           </button>`
+          :
+          ""
+        }
+
+      </div>
+
+    `).join("");
 
 }
 
+
+/* =====================================================
+   CALENDAR EVENTS
+===================================================== */
+
+function addEvent(){
+
+  const date=
+    document.getElementById("eventDate").value;
+
+  const text=
+    document.getElementById("eventText").value.trim();
+
+  if(!date || !text){
+
+    alert("Choose a date and write the event.");
+
+    return;
+  }
+
+
+  app.events.push({
+    id:Date.now()+"_"+Math.random(),
+    date:date,
+    text:text
+  });
+
+
+  document.getElementById("eventDate").value="";
+  document.getElementById("eventText").value="";
+
+  saveApp();
+
+  renderCalendar();
+
+}
+
+
+function deleteEvent(id){
+
+  app.events=
+    app.events.filter(
+      e=>e.id!==id
+    );
+
+  saveApp();
+
+  renderCalendar();
+
+}
+
+
+function eventsForDate(key){
+
+  return app.events.filter(
+    e=>e.date===key
+  );
+
+}
+
+
+function changeCalendarMonth(amount){
+
+  currentCalendarMonth.setMonth(
+    currentCalendarMonth.getMonth()+amount
+  );
+
+  renderCalendar();
+
+}
 
 
 function renderCalendar(){
 
-let y=
-viewMonth.getFullYear();
+  const y=
+    currentCalendarMonth.getFullYear();
 
-let m=
-viewMonth.getMonth();
+  const m=
+    currentCalendarMonth.getMonth();
 
-let first=
-new Date(y,m,1).getDay();
+  const first=
+    new Date(y,m,1).getDay();
 
-let days=
-new Date(y,m+1,0).getDate();
-
-
-document.getElementById(
-"calTitle"
-).textContent=
-viewMonth.toLocaleDateString(
-undefined,
-{
-month:"long",
-year:"numeric"
-}
-);
+  const days=
+    new Date(y,m+1,0).getDate();
 
 
-let html=
-[
-"Sun","Mon","Tue",
-"Wed","Thu","Fri","Sat"
-]
-.map(x=>
-`<div class="calhead">${x[0]}</div>`
-)
-.join("");
+  document.getElementById("calTitle")
+    .textContent=
+      currentCalendarMonth.toLocaleDateString(
+        undefined,
+        {
+          month:"long",
+          year:"numeric"
+        }
+      );
 
 
-for(let i=0;i<first;i++){
-
-html+="<div></div>";
-
-}
+  let html="";
 
 
-for(let d=1;d<=days;d++){
-
-let k=
-keyFor(
-new Date(y,m,d)
-);
-
-let x=data.days[k];
-
-let cls="";
-
-if(x&&x.tasks.length){
-
-let p=
-x.tasks.filter(
-t=>t.done
-).length/
-x.tasks.length;
-
-if(p>=.8)
-cls="good";
-
-else if(p>=.4)
-cls="partial";
-
-else
-cls="bad";
-
-}
+  for(let i=0;i<first;i++){
+    html+="<div></div>";
+  }
 
 
-if(k===todayKey)
-cls+=" today";
+  for(let d=1;d<=days;d++){
+
+    const date=
+      new Date(y,m,d);
+
+    const key=dateKey(date);
+
+    const ev=eventsForDate(key);
+
+    const dayData=app.days[key];
+
+    let cls="day";
 
 
-html+=`
-
-<button
-class="day ${cls}"
-onclick="selectDate('${k}')">
-
-${d}
-
-</button>
-
-`;
-
-}
+    if(key===todayKey())
+      cls+=" today";
 
 
-document.getElementById(
-"calendarGrid"
-).innerHTML=html;
-
-}
+    if(ev.length)
+      cls+=" event";
 
 
+    if(dayData && dayData.tasks.length){
 
-function selectDate(k){
+      const p=
+        dayData.tasks.filter(
+          t=>t.done
+        ).length/
+        dayData.tasks.length;
 
-let x=data.days[k];
+      if(p>=.8)
+        cls+=" good";
+      else if(p>=.4)
+        cls+=" partial";
+      else
+        cls+=" bad";
 
-let box=
-document.getElementById(
-"selectedDay"
-);
+    }
 
-if(!x){
 
-box.innerHTML=
-`<div class="empty">
-No saved data for this day.
-</div>`;
+    html+=`
 
-return;
+      <button
+        class="${cls}"
+        onclick="selectCalendarDate('${key}')">
+
+        ${d}
+
+        ${
+          ev.length
+          ?
+          `<span class="event-dot">
+             📌 ${ev.length}
+           </span>`
+          :
+          ""
+        }
+
+      </button>
+
+    `;
+
+  }
+
+
+  document.getElementById("calendarGrid")
+    .innerHTML=html;
+
+
+  renderEventList();
 
 }
 
 
-let done=
-x.tasks.filter(t=>t.done).length;
+function renderEventList(){
 
-let study=
-(x.study||[])
-.reduce(
-(a,s)=>a+s.mins,
-0
-);
+  const list=
+    document.getElementById("eventList");
 
 
-box.innerHTML=`
+  const sorted=[...app.events]
+    .sort(
+      (a,b)=>a.date.localeCompare(b.date)
+    );
 
-<h2>🌷 ${k}</h2>
 
-<p>
-<b>${done}/${x.tasks.length}</b>
-tasks completed ·
-⭐ ${x.rating||0}/5
-</p>
+  if(!sorted.length){
 
-<p
-class="small"
-style="margin-top:6px">
+    list.innerHTML=
+      `<div class="empty">
+        No calendar events yet.
+      </div>`;
 
-📚 Study ${fmtMin(study)}
-·
-📱 Phone ${fmtMin((x.time||{}).Phone||0)}
+    return;
+  }
 
-</p>
 
-<hr
-style="
-border:0;
-border-top:1px solid var(--line);
-margin:12px 0;
-">
+  list.innerHTML=
+    sorted.map(e=>`
 
-<p style="font-size:12px">
+      <div class="event-item">
 
-<b>Reality check:</b>
+        <div class="row">
 
-${escapeHtml(
-x.why||"Not written"
-)}
+          <span>
+            📌 <b>${escapeHtml(e.date)}</b>
+          </span>
 
-</p>
+          <button
+            class="delete"
+            onclick="deleteEvent('${e.id}')">
+            ×
+          </button>
 
-<p
-style="font-size:12px;margin-top:7px">
+        </div>
 
-<b>Tomorrow:</b>
+        <div style="margin-top:5px">
+          ${escapeHtml(e.text)}
+        </div>
 
-${escapeHtml(
-x.mustdo||"Not set"
-)}
+      </div>
 
-</p>
-
-`;
+    `).join("");
 
 }
 
 
+function selectCalendarDate(key){
 
-/* =========================
-   POPUP
-========================= */
+  const events=eventsForDate(key);
+
+  const box=
+    document.getElementById("selectedDay");
+
+
+  if(!events.length){
+
+    box.innerHTML=`
+
+      <h2>📆 ${key}</h2>
+
+      <div class="empty">
+        No important calendar event on this date.
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  box.innerHTML=`
+
+    <h2>📌 ${key}</h2>
+
+    <div class="event-list">
+
+      ${events.map(e=>`
+
+        <div class="event-item">
+
+          <div class="row">
+
+            <b>${escapeHtml(e.text)}</b>
+
+            <button
+              class="delete"
+              onclick="deleteEvent('${e.id}')">
+              ×
+            </button>
+
+          </div>
+
+        </div>
+
+      `).join("")}
+
+    </div>
+
+  `;
+
+}
+
+
+/* =====================================================
+   POPUPS
+===================================================== */
 
 function closeModal(){
 
-document.getElementById(
-"startupModal"
-).style.display="none";
+  document.getElementById("modalBg")
+    .style.display="none";
 
 }
 
 
+function showModal(icon,title,body){
 
-function startupAlert(){
+  document.getElementById("modalIcon")
+    .textContent=icon;
 
-let x=day();
+  document.getElementById("modalTitle")
+    .textContent=title;
 
-let pending=
-x.tasks.filter(t=>!t.done).length;
+  document.getElementById("modalBody")
+    .innerHTML=body;
 
-let phone=
-x.time.Phone||0;
-
-let limit=
-data.settings.phoneLimit;
-
-
-if(pending||phone>limit){
-
-document.getElementById(
-"modalTitle"
-).textContent=
-`You have ${pending} pending task${pending===1?"":"s"} today`;
-
-
-document.getElementById(
-"modalBody"
-).textContent=
-
-`Phone time: ${fmtMin(phone)}. `+
-(
-phone>limit
-?
-"You are already over your phone limit. "
-:
-""
-)+
-"Before another scroll, finish one small task.";
-
-
-document.getElementById(
-"startupModal"
-).style.display="flex";
-
-}
+  document.getElementById("modalBg")
+    .style.display="flex";
 
 }
 
 
+function startupPopups(){
 
-/* =========================
-   RENDER
-========================= */
+  const key=todayKey();
+
+  const x=getDay(key);
+
+  const pending=x.tasks.filter(
+    t=>!t.done
+  );
+
+  const events=eventsForDate(key);
+
+  const phone=x.time.Phone||0;
+
+  const limit=app.settings.phoneLimit;
+
+
+  /* Calendar popup has priority */
+
+  if(events.length){
+
+    const eventHTML=
+      events.map(e=>
+        `<div class="modal-item">
+          📌 ${escapeHtml(e.text)}
+        </div>`
+      ).join("");
+
+
+    showModal(
+      "📆",
+      "Today's Important Event",
+      eventHTML+
+      `
+      <p class="small" style="margin-top:9px">
+        This is a Calendar reminder.
+        It is separate from your Daily Plan.
+      </p>
+      `
+    );
+
+    return;
+
+  }
+
+
+  /* Daily popup */
+
+  if(pending.length){
+
+    const taskHTML=
+      pending.map(t=>
+        `<div class="modal-item">
+          🌷 ${escapeHtml(t.text)}
+        </div>`
+      ).join("");
+
+
+    showModal(
+      "🐼",
+      pending.length+
+      " pending task"+
+      (pending.length===1?"":"s")+" today",
+      taskHTML+
+      `
+      <p class="small" style="margin-top:9px">
+        Phone time: ${formatMinutes(phone)}
+        ${
+          phone>limit
+          ?
+          " · 🚨 over your limit"
+          :
+          ""
+        }
+      </p>
+      `
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   RENDER EVERYTHING
+===================================================== */
 
 function renderAll(){
 
-renderHome();
-renderDaily();
-renderWeekly();
-renderMonthly();
-renderCalendar();
+  renderHome();
+  renderDaily();
+  renderWeekly();
+  renderMonthly();
+  renderCalendar();
 
 }
 
 
-
-/* =========================
+/* =====================================================
    START
-========================= */
+===================================================== */
 
 renderAll();
-
-if(!localStorage.getItem(KEY)){
-
-ensureTasks();
-
-save();
-
-renderAll();
-
-}
 
 setTimeout(
-startupAlert,
-500
+  startupPopups,
+  600
 );
 
 </script>
