@@ -3,378 +3,359 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sowa's Daily Life</title>
+<meta name="theme-color" content="#b7849a">
+<title>Sowa's Daily Life 🌷</title>
 
 <style>
 :root{
-  --bg:#fbf6f8;
-  --card:#ffffff;
-  --primary:#7b3048;
-  --primary2:#9b526c;
-  --soft:#f2dfe6;
-  --soft2:#f8eaf0;
-  --text:#49333b;
-  --muted:#8c737b;
-  --danger:#b83250;
-  --border:#ead8df;
-  --shadow:0 8px 24px rgba(100,50,70,.10);
+  --mauve:#b7849a;
+  --dark:#624653;
+  --soft:#ead7df;
+  --bg:#fff8fb;
+  --card:#fffdfd;
+  --line:#eadde2;
+  --muted:#927f88;
+  --danger:#a94f63;
+  --green:#78927e;
+  --yellow:#c59b55;
 }
 
 *{box-sizing:border-box}
 
 body{
   margin:0;
-  font-family:Arial,sans-serif;
-  background:var(--bg);
-  color:var(--text);
+  background:linear-gradient(145deg,#f6e8ee,#fffafd);
+  color:var(--dark);
+  font-family:Arial,Helvetica,sans-serif;
 }
 
-button,input,select,textarea{
+button,input,textarea,select{
   font:inherit;
 }
 
-button{
-  cursor:pointer;
-}
+button{cursor:pointer}
 
-header{
-  text-align:center;
-  padding:24px 15px 16px;
-}
-
-header h1{
-  margin:0;
-  color:var(--primary);
-  font-size:28px;
-}
-
-header p{
-  margin:7px 0 0;
-  color:var(--muted);
-  font-size:14px;
-}
-
-.container{
-  width:min(1050px,94%);
+.app{
+  max-width:470px;
   margin:auto;
-  padding-bottom:50px;
+  min-height:100vh;
+  padding:15px 14px 45px;
 }
 
-.nav{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:10px;
-  margin:10px 0 20px;
+.header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:14px;
 }
 
-.nav button{
-  border:0;
-  background:var(--card);
-  color:var(--primary);
-  padding:13px 8px;
-  border-radius:16px;
-  box-shadow:var(--shadow);
-  font-weight:bold;
+.brand{
+  font-size:21px;
+  font-weight:700;
 }
 
-.nav button.active{
-  background:var(--primary);
-  color:white;
-}
+.mascot{font-size:30px}
 
-.page{
-  display:none;
-}
-
-.page.active{
-  display:block;
-}
+.page{display:none}
+.page.active{display:block}
 
 .card{
   background:var(--card);
-  border:1px solid var(--border);
-  border-radius:20px;
-  padding:18px;
-  margin-bottom:16px;
-  box-shadow:var(--shadow);
+  border:1px solid var(--line);
+  border-radius:21px;
+  padding:15px;
+  margin:11px 0;
+  box-shadow:0 6px 22px #b7849a18;
 }
 
-.card h2,
-.card h3{
-  margin-top:0;
-  color:var(--primary);
+.hero{
+  background:linear-gradient(135deg,#ead7df,#f9edf2);
 }
 
-.section-title{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-  flex-wrap:wrap;
-}
+h1{font-size:24px;margin:0}
+h2{font-size:17px;margin:0 0 10px}
+h3{font-size:14px;margin:0 0 8px}
 
 .small{
+  font-size:12px;
   color:var(--muted);
-  font-size:13px;
-}
-
-.btn{
-  border:0;
-  border-radius:12px;
-  padding:10px 15px;
-  background:var(--primary);
-  color:white;
-  font-weight:bold;
-}
-
-.btn.secondary{
-  background:var(--soft);
-  color:var(--primary);
-}
-
-.btn.danger{
-  background:#f5d7df;
-  color:var(--danger);
-}
-
-input,select,textarea{
-  width:100%;
-  border:1px solid var(--border);
-  border-radius:12px;
-  padding:10px 12px;
-  background:white;
-  color:var(--text);
-  outline:none;
-}
-
-input:focus,select:focus,textarea:focus{
-  border-color:var(--primary2);
-}
-
-textarea{
-  min-height:80px;
-  resize:vertical;
 }
 
 .row{
   display:flex;
-  gap:10px;
+  justify-content:space-between;
   align-items:center;
+  gap:8px;
 }
 
-.row>*{
-  flex:1;
-}
-
-.grid2{
+.grid{
   display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:12px;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
 }
 
-.grid3{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:12px;
+.nav{
+  border:1px solid var(--line);
+  background:#fff;
+  border-radius:18px;
+  padding:16px 11px;
+  text-align:left;
+  color:var(--dark);
+  font-weight:bold;
 }
 
-.progress-wrap{
-  background:#f0e5e9;
-  height:11px;
+.nav span{
+  display:block;
+  font-size:26px;
+  margin-bottom:5px;
+}
+
+.pill,.tag{
+  background:var(--soft);
+  padding:5px 9px;
   border-radius:20px;
-  overflow:hidden;
-  margin:10px 0;
+  font-size:11px;
+  font-weight:bold;
 }
 
 .progress{
-  height:100%;
-  background:var(--primary2);
+  height:9px;
+  background:#f0e6ea;
   border-radius:20px;
+  overflow:hidden;
+  margin-top:8px;
+}
+
+.bar{
+  height:100%;
+  width:0;
+  background:var(--mauve);
   transition:.25s;
 }
 
-.stat{
-  background:var(--soft2);
-  border-radius:16px;
-  padding:14px;
-  text-align:center;
+.btn{
+  border:0;
+  border-radius:11px;
+  padding:9px 12px;
+  background:var(--mauve);
+  color:white;
+  font-weight:bold;
 }
 
-.stat strong{
-  display:block;
-  font-size:22px;
-  color:var(--primary);
+.ghost{
+  background:#f4e8ed;
+  color:var(--dark);
 }
+
+.back{
+  border:0;
+  background:none;
+  color:var(--mauve);
+  font-weight:bold;
+  padding:0 0 9px;
+}
+
+input,textarea,select{
+  width:100%;
+  border:1px solid var(--line);
+  border-radius:11px;
+  padding:9px;
+  background:white;
+  color:var(--dark);
+}
+
+textarea{
+  min-height:70px;
+  resize:vertical;
+}
+
+.addrow{
+  display:flex;
+  gap:7px;
+  margin-top:10px;
+}
+
+.addrow input{flex:1}
 
 .task{
   display:flex;
   align-items:center;
-  gap:10px;
-  padding:11px;
-  border:1px solid var(--border);
-  border-radius:14px;
-  margin:8px 0;
-  background:#fffafb;
+  gap:8px;
+  padding:9px 0;
+  border-bottom:1px solid #f1e8eb;
 }
+
+.task:last-child{border-bottom:0}
 
 .task input[type="checkbox"]{
-  width:auto;
-  transform:scale(1.15);
+  width:19px;
+  height:19px;
+  accent-color:var(--mauve);
 }
 
-.task.done label{
-  text-decoration:line-through;
-  opacity:.55;
-}
-
-.task-main{
+.tasktext{
   flex:1;
+  min-width:0;
+  word-break:break-word;
 }
 
-.task-title{
-  font-weight:bold;
+.done{
+  text-decoration:line-through;
+  color:#aaa;
 }
 
-.task-meta{
-  color:var(--muted);
-  font-size:12px;
-  margin-top:3px;
+.task select{
+  width:90px;
+  padding:5px;
+  font-size:10px;
 }
 
 .delete{
   border:0;
   background:none;
-  color:#a76b7e;
-  font-size:18px;
+  color:#b78b98;
+  font-size:17px;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+}
+
+.stat{
+  background:#fbf3f6;
+  border-radius:15px;
+  padding:12px;
+}
+
+.num{
+  font-size:19px;
+  font-weight:bold;
 }
 
 .time-row{
   display:grid;
-  grid-template-columns:1fr 120px;
-  gap:10px;
+  grid-template-columns:1.4fr .8fr .35fr;
   align-items:center;
-  margin:8px 0;
+  gap:6px;
+  margin:7px 0;
 }
 
-.pie{
-  width:190px;
-  height:190px;
+.time-row label{font-size:12px}
+
+.time-row input{padding:7px}
+
+.chart{
+  width:155px;
+  height:155px;
   border-radius:50%;
-  margin:18px auto;
-  background:conic-gradient(
-    #7b3048 0deg,
-    #9b526c 60deg,
-    #c9869c 120deg,
-    #dca9b8 180deg,
-    #ead0d8 240deg,
-    #b36b82 300deg,
-    #7b3048 360deg
-  );
+  margin:10px auto;
+  background:#ead7df;
   position:relative;
 }
 
-.pie:after{
+.chart:after{
   content:"";
   position:absolute;
-  width:90px;
-  height:90px;
-  background:white;
+  inset:39px;
+  background:#fffdfd;
   border-radius:50%;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
 }
 
 .legend{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:7px;
   font-size:12px;
+  line-height:1.9;
 }
 
-.legend span{
-  padding:7px;
-  background:var(--soft2);
-  border-radius:9px;
-}
-
-.rating{
+.stars{
   display:flex;
-  gap:8px;
+  gap:2px;
 }
 
-.rating button{
-  border:1px solid var(--border);
-  background:white;
-  border-radius:10px;
-  padding:8px 12px;
-}
-
-.rating button.selected{
-  background:var(--soft);
-  border-color:var(--primary2);
+.star{
+  border:0;
+  background:none;
+  color:var(--mauve);
+  font-size:29px;
+  padding:0;
 }
 
 .week-picker{
   display:flex;
-  gap:10px;
+  gap:7px;
   align-items:center;
-  flex-wrap:wrap;
 }
 
-.week-day{
-  border:1px solid var(--border);
-  border-radius:16px;
-  padding:14px;
-  background:#fffafb;
+.week-picker button{
+  border:0;
+  background:#f4e8ed;
+  border-radius:10px;
+  padding:8px 11px;
+  color:var(--dark);
+  font-weight:bold;
 }
 
-.week-day h3{
-  margin:0 0 4px;
-}
-
-.week-day .date{
-  color:var(--muted);
-  font-size:12px;
-  margin-bottom:10px;
-}
-
-.week-task{
-  display:flex;
-  gap:8px;
-  align-items:center;
-  margin:7px 0;
-}
-
-.week-task input[type="checkbox"]{
-  width:auto;
-}
-
-.week-task input[type="text"]{
-  padding:8px;
-}
-
-.month-nav,
-.cal-nav{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-}
-
-.goal{
-  display:flex;
-  gap:9px;
-  align-items:center;
-  margin:9px 0;
-}
-
-.goal input[type="checkbox"]{
-  width:auto;
-}
-
-.goal input[type="text"]{
+.week-label{
   flex:1;
+  text-align:center;
+  font-size:12px;
+  font-weight:bold;
+}
+
+.weekgrid{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:4px;
+  overflow-x:auto;
+}
+
+.weekcol{
+  min-width:0;
+  background:#fbf3f6;
+  border-radius:13px;
+  padding:7px 4px;
+  min-height:160px;
+}
+
+.weekday{
+  font-size:11px;
+  font-weight:bold;
+}
+
+.date-small{
+  font-size:10px;
+  color:var(--muted);
+}
+
+.mini{
+  display:flex;
+  gap:3px;
+  margin:7px 0;
+  font-size:9px;
+  line-height:1.2;
+}
+
+.mini input{
+  width:13px;
+  height:13px;
+  margin:0;
+  flex:none;
+  accent-color:var(--mauve);
+}
+
+.calendar-head{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:4px;
+  text-align:center;
+  margin-bottom:5px;
+}
+
+.calendar-head div{
+  font-size:10px;
+  color:var(--muted);
+  font-weight:bold;
 }
 
 .calendar{
@@ -383,410 +364,667 @@ textarea{
   gap:5px;
 }
 
-.cal-head{
-  text-align:center;
-  font-size:12px;
-  font-weight:bold;
-  color:var(--muted);
-  padding:8px 2px;
-}
-
-.cal-cell{
-  min-height:95px;
-  border:1px solid var(--border);
+.day{
+  border:1px solid transparent;
   background:white;
   border-radius:10px;
-  padding:7px;
-  cursor:pointer;
-}
-
-.cal-cell.empty{
-  background:transparent;
-  border:0;
-  cursor:default;
-}
-
-.cal-number{
-  font-weight:bold;
-  color:var(--primary);
-}
-
-.today{
-  outline:2px solid var(--primary2);
-}
-
-.event{
-  margin-top:5px;
+  min-height:38px;
+  padding:5px 2px;
+  color:var(--dark);
   font-size:11px;
-  background:var(--soft);
-  border-radius:7px;
-  padding:4px;
-  overflow:hidden;
+  position:relative;
 }
 
-.modal-bg{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(50,25,35,.42);
-  z-index:1000;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
+.day.today{
+  border:2px solid var(--mauve);
 }
 
-.modal-bg.show{
-  display:flex;
+.day.event{
+  background:#f5e5eb;
 }
 
-.modal{
-  width:min(500px,100%);
-  background:white;
-  border-radius:24px;
-  padding:24px;
-  box-shadow:0 15px 45px rgba(50,25,35,.25);
-  max-height:85vh;
-  overflow:auto;
+.day.good{
+  box-shadow:inset 0 -3px var(--green);
 }
 
-.modal h2{
-  color:var(--primary);
-  margin-top:0;
+.day.partial{
+  box-shadow:inset 0 -3px var(--yellow);
 }
 
-.alert{
-  background:#f9dfe6;
+.day.bad{
+  box-shadow:inset 0 -3px var(--danger);
+}
+
+.event-dot{
+  display:block;
+  font-size:8px;
+  margin-top:2px;
+}
+
+.event-list{
+  margin-top:8px;
+}
+
+.event-item{
+  background:#fbf3f6;
+  border-radius:12px;
+  padding:9px;
+  margin:6px 0;
+  font-size:12px;
+}
+
+.danger-card{
+  background:#fff0f2;
+  border-color:#e9b6c0;
+}
+
+.danger-title{
   color:var(--danger);
-  border:1px solid #edb9c7;
-  border-radius:14px;
-  padding:12px;
-  margin:10px 0;
-  font-weight:bold;
 }
 
 .empty{
   text-align:center;
+  padding:12px;
   color:var(--muted);
-  padding:25px 10px;
+  font-size:12px;
 }
 
-@media(max-width:700px){
-  .nav{
-    grid-template-columns:repeat(2,1fr);
-  }
+.modal-bg{
+  position:fixed;
+  inset:0;
+  background:#493b4366;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  z-index:100;
+}
 
-  .grid2,.grid3{
-    grid-template-columns:1fr;
-  }
+.modal{
+  max-width:400px;
+  width:100%;
+  background:white;
+  border-radius:24px;
+  padding:21px;
+  box-shadow:0 18px 55px #0004;
+}
 
-  .calendar{
-    gap:3px;
-  }
+.modal-item{
+  padding:10px;
+  background:#fbf3f6;
+  border-radius:12px;
+  margin:7px 0;
+  font-size:13px;
+}
 
-  .cal-cell{
-    min-height:72px;
-    padding:5px;
-  }
+.modal-actions{
+  display:flex;
+  gap:8px;
+  margin-top:15px;
+}
 
-  .event{
-    font-size:9px;
-  }
+.modal-actions button{flex:1}
 
-  .week-picker{
-    flex-direction:column;
-    align-items:stretch;
-  }
+footer{
+  text-align:center;
+  color:var(--muted);
+  font-size:11px;
+  margin-top:20px;
+}
+
+@media(max-width:370px){
+  .task select{display:none}
+  .brand{font-size:18px}
 }
 </style>
 </head>
 
 <body>
 
-<header>
-  <h1>🌷 Sowa's Daily Life 🐰🐼</h1>
-  <p>Study • Discipline • Health • Time • Life</p>
+<div class="app">
+
+<header class="header">
+  <div class="brand">Sowa's Daily Life 🌷</div>
+  <div class="mascot">🐰</div>
 </header>
 
-<div class="container">
 
-  <div class="nav">
-    <button onclick="showPage('daily')" id="nav-daily">Daily Plan</button>
-    <button onclick="showPage('weekly')" id="nav-weekly">Weekly Plan</button>
-    <button onclick="showPage('monthly')" id="nav-monthly">Monthly Plan</button>
-    <button onclick="showPage('calendar')" id="nav-calendar">Calendar</button>
-  </div>
+<!-- HOME -->
 
-  <!-- DAILY -->
-  <section class="page" id="daily">
+<section id="home" class="page active">
 
-    <div class="card">
-      <div class="section-title">
-        <div>
-          <h2>🌷 Today's Plan</h2>
-          <div class="small" id="dailyDate"></div>
-        </div>
-        <button class="btn" onclick="addDailyTask()">＋ Add Task</button>
-      </div>
+<div class="card hero">
 
-      <div id="dailyTaskLimit" class="small"></div>
-      <div id="dailyTasks"></div>
+<div class="small" id="homeDate"></div>
 
-      <div class="progress-wrap">
-        <div class="progress" id="dailyProgress"></div>
-      </div>
+<h1 style="margin-top:5px">
+Let's make today count ✨
+</h1>
 
-      <div id="dailyStats"></div>
-    </div>
-
-    <div class="card">
-      <h2>📚 Study Tracker</h2>
-
-      <div class="grid2">
-        <div>
-          <label>Subject / Category</label>
-          <select id="studyCategory">
-            <option>Anatomy</option>
-            <option>Physiology</option>
-            <option>Pharmacology</option>
-            <option>Medicine</option>
-            <option>Microbiology</option>
-            <option>Revision</option>
-            <option>Viva/Item</option>
-            <option>Assignment</option>
-            <option>Custom</option>
-          </select>
-        </div>
-
-        <div>
-          <label>Study time (minutes)</label>
-          <input type="number" id="studyMinutes" min="0" placeholder="e.g. 60">
-        </div>
-      </div>
-
-      <br>
-
-      <div class="row">
-        <input id="studyCustom" placeholder="Custom study topic (optional)">
-        <button class="btn" onclick="addStudyEntry()">Add Study</button>
-      </div>
-
-      <div id="studyEntries"></div>
-      <div id="studyTotal"></div>
-    </div>
-
-    <div class="card">
-      <h2>⏰ Where did your time go?</h2>
-      <div id="timeInputs"></div>
-
-      <button class="btn secondary" onclick="saveTime()">Save Time</button>
-
-      <div id="phoneAlert"></div>
-
-      <div id="pieChart" class="pie"></div>
-      <div id="timeLegend" class="legend"></div>
-    </div>
-
-    <div class="card">
-      <h2>📱 Phone Limit</h2>
-
-      <div class="grid2">
-        <div>
-          <label>Your daily phone limit (minutes)</label>
-          <input type="number" id="phoneLimit" min="1">
-        </div>
-
-        <div style="display:flex;align-items:end">
-          <button class="btn" onclick="savePhoneLimit()">Save Limit</button>
-        </div>
-      </div>
-
-      <p class="small">
-        Phone time must be entered manually because a normal browser app cannot read Android Screen Time automatically.
-      </p>
-    </div>
-
-    <div class="card">
-      <h2>⭐ How was today?</h2>
-
-      <div class="rating" id="ratingButtons">
-        <button onclick="setRating(1)">1</button>
-        <button onclick="setRating(2)">2</button>
-        <button onclick="setRating(3)">3</button>
-        <button onclick="setRating(4)">4</button>
-        <button onclick="setRating(5)">5</button>
-      </div>
-    </div>
-
-    <div class="card">
-      <h2>📝 End-of-day Reflection</h2>
-
-      <label>What did you plan but not do?</label>
-      <textarea id="reflectionMissed"></textarea>
-
-      <br>
-
-      <label>Why didn't you do it?</label>
-      <textarea id="reflectionWhy"></textarea>
-
-      <br>
-
-      <label>Tomorrow's MUST-DO</label>
-      <textarea id="reflectionTomorrow"></textarea>
-
-      <br>
-      <button class="btn" onclick="saveReflection()">Save Reflection</button>
-    </div>
-
-  </section>
-
-
-  <!-- WEEKLY -->
-  <section class="page" id="weekly">
-
-    <div class="card">
-      <div class="section-title">
-        <div>
-          <h2>🗓️ Weekly Plan</h2>
-          <div class="small">Select a whole week: Saturday → Friday</div>
-        </div>
-      </div>
-
-      <div class="week-picker">
-        <button class="btn secondary" onclick="changeWeek(-7)">← Previous Week</button>
-
-        <input type="date" id="weekPicker">
-
-        <button class="btn secondary" onclick="changeWeek(7)">Next Week →</button>
-
-        <button class="btn" onclick="goCurrentWeek()">Current Week</button>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="grid3">
-        <div class="stat">
-          <strong id="weeklyCompleted">0</strong>
-          Completed
-        </div>
-
-        <div class="stat">
-          <strong id="weeklyTotal">0</strong>
-          Total Tasks
-        </div>
-
-        <div class="stat">
-          <strong id="weeklyPercent">0%</strong>
-          Completion
-        </div>
-      </div>
-
-      <div class="progress-wrap">
-        <div class="progress" id="weeklyProgress"></div>
-      </div>
-    </div>
-
-    <div id="weeklyDays"></div>
-
-    <div class="card">
-      <h2>📊 Weekly Time</h2>
-
-      <div class="grid2">
-        <div>
-          <label>Total Study Time (minutes)</label>
-          <input type="number" id="weeklyStudyTime" min="0">
-        </div>
-
-        <div>
-          <label>Total Phone Time (minutes)</label>
-          <input type="number" id="weeklyPhoneTime" min="0">
-        </div>
-      </div>
-
-      <br>
-      <button class="btn" onclick="saveWeeklyTime()">Save Weekly Time</button>
-
-      <div id="weeklyTimeResult"></div>
-    </div>
-
-  </section>
-
-
-  <!-- MONTHLY -->
-  <section class="page" id="monthly">
-
-    <div class="card">
-      <div class="month-nav">
-        <button class="btn secondary" onclick="changeMonth(-1)">←</button>
-        <h2 id="monthTitle"></h2>
-        <button class="btn secondary" onclick="changeMonth(1)">→</button>
-      </div>
-    </div>
-
-    <div class="card">
-      <h2>🎯 10 Important Goals</h2>
-      <p class="small">
-        Every month has its own goals. Goals from another month will NOT carry over automatically.
-      </p>
-
-      <div id="monthlyGoals"></div>
-
-      <div class="progress-wrap">
-        <div class="progress" id="monthlyProgress"></div>
-      </div>
-
-      <div id="monthlyPercent"></div>
-
-      <br>
-      <button class="btn" onclick="saveMonthly()">Save Monthly Plan</button>
-    </div>
-
-  </section>
-
-
-  <!-- CALENDAR -->
-  <section class="page" id="calendar">
-
-    <div class="card">
-      <div class="cal-nav">
-        <button class="btn secondary" onclick="changeCalMonth(-1)">←</button>
-        <h2 id="calTitle"></h2>
-        <button class="btn secondary" onclick="changeCalMonth(1)">→</button>
-      </div>
-    </div>
-
-    <div class="card">
-      <p class="small">
-        📌 Calendar is completely separate from Daily Plan.
-        Add important events, exams, practicals, deadlines or routines here.
-      </p>
-
-      <div id="calendarGrid" class="calendar"></div>
-    </div>
-
-    <div class="card">
-      <h2>📌 Events this month</h2>
-      <div id="eventList"></div>
-    </div>
-
-  </section>
+<p class="small" style="margin-top:7px">
+<span id="homePending">0</span> pending task(s)
+</p>
 
 </div>
 
 
-<!-- STARTUP POPUP -->
-<div class="modal-bg" id="modalBg">
-  <div class="modal">
-    <div id="modalContent"></div>
-    <button class="btn" onclick="closeModal()">Okay</button>
-  </div>
+<div class="grid">
+
+<button class="nav" onclick="showPage('daily')">
+<span>🌷</span>
+Daily Plan
+</button>
+
+<button class="nav" onclick="showPage('weekly')">
+<span>📅</span>
+Weekly Plan
+</button>
+
+<button class="nav" onclick="showPage('monthly')">
+<span>🗓️</span>
+Monthly Plan
+</button>
+
+<button class="nav" onclick="showPage('calendar')">
+<span>📆</span>
+Calendar
+</button>
+
 </div>
+
+
+<div class="card">
+
+<div class="row">
+<h2>Today's Progress</h2>
+<span class="pill" id="homeProgressText">0 / 0</span>
+</div>
+
+<div class="progress">
+<div class="bar" id="homeBar"></div>
+</div>
+
+</div>
+
+
+<div id="phoneHome" class="card"></div>
+
+
+<div class="card">
+
+<h2>🐼 Future Reminder</h2>
+
+<p
+id="futureMessage"
+style="font-size:13px;line-height:1.6">
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h2>⚙️ Daily Limits</h2>
+
+<div class="time-row">
+<label>📱 Phone limit</label>
+<input
+id="phoneLimit"
+type="number"
+min="0"
+onchange="changeSettings()">
+<span class="small">min</span>
+</div>
+
+<div class="time-row">
+<label>📚 Study target</label>
+<input
+id="studyTarget"
+type="number"
+min="0"
+onchange="changeSettings()">
+<span class="small">min</span>
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- DAILY -->
+
+<section id="daily" class="page">
+
+<button class="back" onclick="showPage('home')">
+← Home
+</button>
+
+
+<div class="card">
+
+<div class="row">
+<h2>🌷 Daily Plan</h2>
+<span class="pill" id="dailyCount">0 / 12</span>
+</div>
+
+<p class="small">
+Add only the work you actually plan to do today.
+</p>
+
+<div id="dailyTasks"></div>
+
+<div class="addrow">
+
+<input
+id="newTask"
+type="text"
+placeholder="Add today's task...">
+
+<button class="btn" onclick="addTask()">＋</button>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<div class="row">
+<h2>📚 Study Time</h2>
+<span class="tag">separate tracking</span>
+</div>
+
+<div id="studyRows"></div>
+
+<div class="addrow">
+
+<select id="studyType">
+<option>Anatomy</option>
+<option>Physiology</option>
+<option>Pharmacology</option>
+<option>Medicine</option>
+<option>Microbiology</option>
+<option>Revision</option>
+<option>Viva / Item</option>
+<option>Assignment</option>
+<option>Custom</option>
+</select>
+
+<input
+id="studyMin"
+type="number"
+min="1"
+placeholder="minutes">
+
+<button class="btn" onclick="addStudy()">＋</button>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>⏱️ Where did my day go?</h2>
+
+<div id="timeRows"></div>
+
+</div>
+
+
+<div class="card">
+
+<h2>📊 Daily Time Analysis</h2>
+
+<div id="pie" class="chart"></div>
+
+<div id="legend" class="legend"></div>
+
+</div>
+
+
+<div class="card">
+
+<h2>⭐ Today's Rating</h2>
+
+<div id="stars" class="stars"></div>
+
+<p
+id="ratingText"
+class="small"
+style="margin-top:5px">
+Not rated yet.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h2>🌙 End-of-Day Reality Check</h2>
+
+<p class="small">
+What did you plan but not finish?
+</p>
+
+<textarea
+id="planned"
+placeholder="Be honest..."></textarea>
+
+<p class="small" style="margin:9px 0 5px">
+Why didn't you do it?
+</p>
+
+<textarea
+id="why"
+placeholder="What actually got in the way?"></textarea>
+
+<p style="font-size:13px;margin:10px 0 5px">
+<b>Tomorrow's MUST-DO</b>
+</p>
+
+<input
+id="mustdo"
+placeholder="One important action">
+
+<button
+class="btn"
+style="width:100%;margin-top:10px"
+onclick="saveReflection()">
+Save reflection
+</button>
+
+</div>
+
+</section>
+
+
+
+<!-- WEEKLY -->
+
+<section id="weekly" class="page">
+
+<button class="back" onclick="showPage('home')">
+← Home
+</button>
+
+
+<div class="card">
+
+<h2>📅 Weekly Plan</h2>
+
+<div class="week-picker">
+
+<button onclick="changeWeek(-1)">‹</button>
+
+<div id="weekLabel" class="week-label"></div>
+
+<button onclick="changeWeek(1)">›</button>
+
+</div>
+
+<p
+class="small"
+style="text-align:center;margin-top:7px">
+Select a whole week and plan Saturday → Friday.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<div id="weekPlan"></div>
+
+</div>
+
+
+<div class="card">
+
+<h2>📊 Weekly Analysis</h2>
+
+<div class="stats">
+
+<div class="stat">
+<div class="small">Tasks</div>
+<div class="num" id="wTasks">0 / 0</div>
+</div>
+
+<div class="stat">
+<div class="small">Study</div>
+<div class="num" id="wStudy">0h</div>
+</div>
+
+<div class="stat">
+<div class="small">Phone</div>
+<div class="num" id="wPhone">0h</div>
+</div>
+
+<div class="stat">
+<div class="small">Completion</div>
+<div class="num" id="wPct">0%</div>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- MONTHLY -->
+
+<section id="monthly" class="page">
+
+<button class="back" onclick="showPage('home')">
+← Home
+</button>
+
+
+<div class="card">
+
+<div class="row">
+
+<h2>🗓️ Monthly Planner</h2>
+
+<span class="pill" id="mCount">0 / 10</span>
+
+</div>
+
+<div class="week-picker">
+
+<button onclick="changeMonth(-1)">‹</button>
+
+<div id="monthLabel" class="week-label"></div>
+
+<button onclick="changeMonth(1)">›</button>
+
+</div>
+
+<p
+class="small"
+style="text-align:center;margin-top:7px">
+These 10 goals belong only to this month.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<div id="monthlyTasks"></div>
+
+<div class="addrow">
+
+<input
+id="newGoal"
+placeholder="Add important monthly goal...">
+
+<button class="btn" onclick="addGoal()">＋</button>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>📈 Monthly Overview</h2>
+
+<div class="progress">
+<div class="bar" id="mBar"></div>
+</div>
+
+<p
+id="mText"
+class="small"
+style="margin-top:8px">
+</p>
+
+</div>
+
+</section>
+
+
+
+<!-- CALENDAR -->
+
+<section id="calendar" class="page">
+
+<button class="back" onclick="showPage('home')">
+← Home
+</button>
+
+
+<div class="card">
+
+<div class="row">
+
+<h2>📆 Calendar</h2>
+
+<div>
+<button class="btn ghost" onclick="changeCalendarMonth(-1)">‹</button>
+<button class="btn ghost" onclick="changeCalendarMonth(1)">›</button>
+</div>
+
+</div>
+
+<h3
+id="calTitle"
+style="text-align:center;margin-top:9px">
+</h3>
+
+<div class="calendar-head">
+<div>Sun</div>
+<div>Mon</div>
+<div>Tue</div>
+<div>Wed</div>
+<div>Thu</div>
+<div>Fri</div>
+<div>Sat</div>
+</div>
+
+<div id="calendarGrid" class="calendar"></div>
+
+</div>
+
+
+<div class="card">
+
+<h2>📌 Important Calendar Events</h2>
+
+<p class="small">
+These are completely separate from Daily Plan.
+</p>
+
+<div id="eventList"></div>
+
+<div class="addrow">
+
+<input
+id="eventDate"
+type="date">
+
+<input
+id="eventText"
+placeholder="Exam / Practical / Important routine...">
+
+<button class="btn" onclick="addEvent()">＋</button>
+
+</div>
+
+</div>
+
+
+<div id="selectedDay" class="card">
+
+<div class="empty">
+Select a date to see its calendar events.
+</div>
+
+</div>
+
+</section>
+
+
+<footer>
+🌷 Sowa's Daily Life · Protect your time.
+</footer>
+
+</div>
+
+
+
+<!-- POPUP -->
+
+<div
+id="modalBg"
+class="modal-bg"
+style="display:none">
+
+<div class="modal">
+
+<div id="modalIcon" style="font-size:30px">
+🌷
+</div>
+
+<h2 id="modalTitle" style="margin-top:7px"></h2>
+
+<div id="modalBody"></div>
+
+<div class="modal-actions">
+
+<button
+class="btn ghost"
+onclick="closeModal()">
+Okay
+</button>
+
+<button
+class="btn"
+onclick="closeModal();showPage('daily')">
+Let's work
+</button>
+
+</div>
+
+</div>
+
+</div>
+
 
 
 <script>
 
-const STORAGE_KEY = "sowa_daily_life_v3";
+/* =====================================================
+   STORAGE
+===================================================== */
 
-const TIME_CATEGORIES = [
+const STORAGE_KEY="sowa_daily_life_v2";
+
+const CATEGORIES=[
   "Study",
   "Phone",
   "Sleep",
@@ -796,64 +1034,53 @@ const TIME_CATEGORIES = [
   "Other"
 ];
 
-let app = loadApp();
+const EMOJIS={
+  Study:"📚",
+  Phone:"📱",
+  Sleep:"😴",
+  College:"🏥",
+  Health:"🏃",
+  Personal:"🌷",
+  Other:"✨"
+};
 
-let currentPage = "daily";
-let currentWeekStart = getSaturdayStart(new Date());
-let currentMonth = new Date();
-let currentCalMonth = new Date();
+let app=loadApp();
 
-function blankDay(){
-  return {
-    tasks: [],
-    study: [],
-    time: {
-      Study:0,
-      Phone:0,
-      Sleep:0,
-      College:0,
-      Health:0,
-      Personal:0,
-      Other:0
-    },
-    rating:0,
-    reflection:{
-      missed:"",
-      why:"",
-      tomorrow:""
+let currentCalendarMonth=new Date(
+  new Date().getFullYear(),
+  new Date().getMonth(),
+  1
+);
+
+let currentMonthlyMonth=new Date(
+  new Date().getFullYear(),
+  new Date().getMonth(),
+  1
+);
+
+let currentWeekStart=getSaturdayStart(new Date());
+
+
+/* =====================================================
+   STORAGE HELPERS
+===================================================== */
+
+function loadApp(){
+
+  try{
+    const saved=JSON.parse(
+      localStorage.getItem(STORAGE_KEY)
+    );
+
+    if(saved){
+      return normalizeApp(saved);
     }
-  };
-}
+  }catch(e){}
 
-function blankWeek(){
-  return {
-    days:{
-      0:[],
-      1:[],
-      2:[],
-      3:[],
-      4:[],
-      5:[],
-      6:[]
-    },
-    studyTime:0,
-    phoneTime:0
-  };
-}
-
-function blankMonth(){
-  return {
-    goals:Array.from({length:10},()=>({
-      text:"",
-      done:false
-    }))
-  };
-}
-
-function defaultApp(){
   return {
     settings:{
-      phoneLimit:180
+      phoneLimit:240,
+      studyTarget:180
     },
     days:{},
     weeks:{},
@@ -862,606 +1089,77 @@ function defaultApp(){
   };
 }
 
-function loadApp(){
-  try{
-    const saved=localStorage.getItem(STORAGE_KEY);
 
-    if(!saved) return defaultApp();
+function normalizeApp(x){
 
-    const parsed=JSON.parse(saved);
+  if(!x.settings)x.settings={};
 
-    const base=defaultApp();
+  if(typeof x.settings.phoneLimit!=="number")
+    x.settings.phoneLimit=240;
 
-    return {
-      ...base,
-      ...parsed,
-      settings:{
-        ...base.settings,
-        ...(parsed.settings||{})
-      },
-      days:parsed.days||{},
-      weeks:parsed.weeks||{},
-      months:parsed.months||{},
-      events:Array.isArray(parsed.events)?parsed.events:[]
-    };
+  if(typeof x.settings.studyTarget!=="number")
+    x.settings.studyTarget=180;
 
-  }catch(e){
-    return defaultApp();
-  }
+  if(!x.days)x.days={};
+  if(!x.weeks)x.weeks={};
+  if(!x.months)x.months={};
+  if(!Array.isArray(x.events))x.events=[];
+
+  return x;
 }
+
 
 function saveApp(){
-  localStorage.setItem(STORAGE_KEY,JSON.stringify(app));
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify(app)
+  );
 }
 
-function getDateKey(date){
-  const y=date.getFullYear();
-  const m=String(date.getMonth()+1).padStart(2,"0");
-  const d=String(date.getDate()).padStart(2,"0");
-  return `${y}-${m}-${d}`;
+
+/* =====================================================
+   DATE HELPERS
+===================================================== */
+
+function dateKey(date){
+
+  return date.getFullYear()+"-"+
+    String(date.getMonth()+1).padStart(2,"0")+"-"+
+    String(date.getDate()).padStart(2,"0");
+
 }
 
-function parseDateKey(key){
+
+function parseKey(key){
+
   const [y,m,d]=key.split("-").map(Number);
+
   return new Date(y,m-1,d);
 }
 
-function formatDate(date){
-  return date.toLocaleDateString(undefined,{
-    weekday:"long",
-    day:"numeric",
-    month:"long",
-    year:"numeric"
-  });
-}
 
-function getTodayKey(){
-  return getDateKey(new Date());
-}
+function monthKey(date){
 
-function getDayData(key){
-  if(!app.days[key]){
-    app.days[key]=blankDay();
-  }
+  return date.getFullYear()+"-"+
+    String(date.getMonth()+1).padStart(2,"0");
 
-  return app.days[key];
 }
 
 
-/* NAVIGATION */
-
-function showPage(page){
-
-  currentPage=page;
-
-  document.querySelectorAll(".page").forEach(x=>{
-    x.classList.remove("active");
-  });
-
-  document.getElementById(page).classList.add("active");
-
-  document.querySelectorAll(".nav button").forEach(x=>{
-    x.classList.remove("active");
-  });
-
-  document.getElementById("nav-"+page).classList.add("active");
-
-  if(page==="daily") renderDaily();
-  if(page==="weekly") renderWeekly();
-  if(page==="monthly") renderMonthly();
-  if(page==="calendar") renderCalendar();
-}
-
-
-/* DAILY */
-
-function addDailyTask(){
-
-  const data=getDayData(getTodayKey());
-
-  if(data.tasks.length>=12){
-    alert("Maximum 12 daily tasks allowed.");
-    return;
-  }
-
-  data.tasks.push({
-    id:Date.now()+Math.random(),
-    text:"",
-    category:"Other",
-    done:false
-  });
-
-  saveApp();
-  renderDaily();
-
-  setTimeout(()=>{
-    const inputs=document.querySelectorAll(".daily-task-input");
-    if(inputs.length) inputs[inputs.length-1].focus();
-  },50);
-}
-
-function updateDailyTask(id,field,value){
-
-  const data=getDayData(getTodayKey());
-  const task=data.tasks.find(t=>String(t.id)===String(id));
-
-  if(task){
-    task[field]=value;
-    saveApp();
-    updateDailyStats();
-  }
-}
-
-function toggleDailyTask(id){
-
-  const data=getDayData(getTodayKey());
-  const task=data.tasks.find(t=>String(t.id)===String(id));
-
-  if(task){
-    task.done=!task.done;
-    saveApp();
-    renderDaily();
-  }
-}
-
-function deleteDailyTask(id){
-
-  const data=getDayData(getTodayKey());
-
-  data.tasks=data.tasks.filter(
-    t=>String(t.id)!==String(id)
-  );
-
-  saveApp();
-  renderDaily();
-}
-
-function renderDaily(){
-
-  const data=getDayData(getTodayKey());
-
-  document.getElementById("dailyDate").textContent=formatDate(new Date());
-
-  document.getElementById("dailyTaskLimit").textContent=
-    `${data.tasks.length}/12 tasks added`;
-
-  const box=document.getElementById("dailyTasks");
-
-  if(data.tasks.length===0){
-
-    box.innerHTML=`
-      <div class="empty">
-        🌷 No tasks yet.<br>
-        Add your own tasks for today.
-      </div>
-    `;
-
-  }else{
-
-    box.innerHTML=data.tasks.map(task=>`
-
-      <div class="task ${task.done?"done":""}">
-
-        <input
-          type="checkbox"
-          ${task.done?"checked":""}
-          onchange="toggleDailyTask('${task.id}')"
-        >
-
-        <div class="task-main">
-
-          <input
-            class="daily-task-input"
-            value="${escapeHtml(task.text)}"
-            placeholder="Write your task..."
-            onchange="updateDailyTask('${task.id}','text',this.value)"
-          >
-
-          <select
-            onchange="updateDailyTask('${task.id}','category',this.value)"
-          >
-            ${[
-              "Other",
-              "Anatomy",
-              "Physiology",
-              "Pharmacology",
-              "Medicine",
-              "Microbiology",
-              "Revision",
-              "Viva/Item",
-              "Assignment",
-              "Custom"
-            ].map(c=>`
-              <option ${task.category===c?"selected":""}>${c}</option>
-            `).join("")}
-          </select>
-
-        </div>
-
-        <button class="delete"
-          onclick="deleteDailyTask('${task.id}')">×</button>
-
-      </div>
-
-    `).join("");
-  }
-
-  renderStudy(data);
-  renderTime(data);
-  renderRating(data);
-  renderReflection(data);
-  updateDailyStats();
-}
-
-function updateDailyStats(){
-
-  const data=getDayData(getTodayKey());
-
-  const total=data.tasks.length;
-  const completed=data.tasks.filter(t=>t.done).length;
-
-  const percent=total===0 ? 0 : Math.round(completed/total*100);
-
-  document.getElementById("dailyProgress").style.width=percent+"%";
-
-  document.getElementById("dailyStats").innerHTML=`
-    <div class="grid3">
-      <div class="stat">
-        <strong>${completed}</strong>
-        Done
-      </div>
-
-      <div class="stat">
-        <strong>${total}</strong>
-        Total
-      </div>
-
-      <div class="stat">
-        <strong>${percent}%</strong>
-        Completion
-      </div>
-    </div>
-  `;
-}
-
-
-/* STUDY */
-
-function addStudyEntry(){
-
-  const data=getDayData(getTodayKey());
-
-  const category=document.getElementById("studyCategory").value;
-  const minutes=Number(document.getElementById("studyMinutes").value)||0;
-  const custom=document.getElementById("studyCustom").value.trim();
-
-  if(minutes<=0){
-    alert("Enter study time in minutes.");
-    return;
-  }
-
-  data.study.push({
-    id:Date.now()+Math.random(),
-    category,
-    topic:custom,
-    minutes
-  });
-
-  data.time.Study=data.study.reduce(
-    (sum,x)=>sum+Number(x.minutes||0),0
-  );
-
-  document.getElementById("studyMinutes").value="";
-  document.getElementById("studyCustom").value="";
-
-  saveApp();
-  renderDaily();
-}
-
-function deleteStudyEntry(id){
-
-  const data=getDayData(getTodayKey());
-
-  data.study=data.study.filter(
-    x=>String(x.id)!==String(id)
-  );
-
-  data.time.Study=data.study.reduce(
-    (sum,x)=>sum+Number(x.minutes||0),0
-  );
-
-  saveApp();
-  renderDaily();
-}
-
-function renderStudy(data){
-
-  const box=document.getElementById("studyEntries");
-
-  if(data.study.length===0){
-
-    box.innerHTML=`
-      <div class="empty">
-        📚 No study session added yet.
-      </div>
-    `;
-
-  }else{
-
-    box.innerHTML=data.study.map(x=>`
-
-      <div class="task">
-
-        <div class="task-main">
-          <div class="task-title">
-            ${escapeHtml(x.category)}
-          </div>
-
-          <div class="task-meta">
-            ${x.topic ? escapeHtml(x.topic)+" • " : ""}
-            ${x.minutes} minutes
-          </div>
-        </div>
-
-        <button class="delete"
-          onclick="deleteStudyEntry('${x.id}')">×</button>
-
-      </div>
-
-    `).join("");
-  }
-
-  const total=data.study.reduce(
-    (sum,x)=>sum+Number(x.minutes||0),0
-  );
-
-  document.getElementById("studyTotal").innerHTML=
-    `<b>Total study time: ${total} minutes (${formatMinutes(total)})</b>`;
-}
-
-
-/* TIME */
-
-function renderTime(data){
-
-  const box=document.getElementById("timeInputs");
-
-  box.innerHTML=TIME_CATEGORIES.map(cat=>`
-
-    <div class="time-row">
-
-      <label>${cat}</label>
-
-      <input
-        type="number"
-        min="0"
-        value="${Number(data.time[cat]||0)}"
-        id="time-${cat}"
-        onchange="updateTimeValue('${cat}',this.value)"
-      >
-
-    </div>
-
-  `).join("");
-
-  renderPie(data);
-}
-
-function updateTimeValue(cat,value){
-
-  const data=getDayData(getTodayKey());
-
-  data.time[cat]=Math.max(0,Number(value)||0);
-
-  if(cat==="Study" && data.study.length>0){
-
-    // Study tracker remains the source of truth for Study time.
-    data.time.Study=data.study.reduce(
-      (sum,x)=>sum+Number(x.minutes||0),0
-    );
-  }
-
-  saveApp();
-  renderPie(data);
-  checkPhone(data);
-}
-
-function saveTime(){
-
-  const data=getDayData(getTodayKey());
-
-  TIME_CATEGORIES.forEach(cat=>{
-    if(cat==="Study" && data.study.length>0) return;
-
-    const el=document.getElementById("time-"+cat);
-
-    if(el){
-      data.time[cat]=Math.max(0,Number(el.value)||0);
+function niceDate(date){
+
+  return date.toLocaleDateString(
+    undefined,
+    {
+      weekday:"long",
+      day:"numeric",
+      month:"long",
+      year:"numeric"
     }
-  });
-
-  saveApp();
-  renderPie(data);
-  checkPhone(data);
-
-  alert("Today's time analysis saved.");
-}
-
-function renderPie(data){
-
-  const values=TIME_CATEGORIES.map(
-    c=>Math.max(0,Number(data.time[c]||0))
   );
 
-  const total=values.reduce((a,b)=>a+b,0);
-
-  if(total===0){
-
-    document.getElementById("pieChart").style.background=
-      "conic-gradient(#eadde2 0deg 360deg)";
-
-  }else{
-
-    let angle=0;
-
-    const stops=[];
-
-    values.forEach((value,i)=>{
-
-      const start=angle;
-      angle+=(value/total)*360;
-
-      stops.push(
-        `${pieColor(i)} ${start}deg ${angle}deg`
-      );
-
-    });
-
-    document.getElementById("pieChart").style.background=
-      `conic-gradient(${stops.join(",")})`;
-  }
-
-  document.getElementById("timeLegend").innerHTML=
-    TIME_CATEGORIES.map((c,i)=>`
-      <span>
-        ${c}: ${Number(data.time[c]||0)} min
-      </span>
-    `).join("");
-
-  checkPhone(data);
 }
 
-function pieColor(i){
-
-  const colors=[
-    "#7b3048",
-    "#9b526c",
-    "#c9869c",
-    "#dca9b8",
-    "#ead0d8",
-    "#b36b82",
-    "#a65f76"
-  ];
-
-  return colors[i];
-}
-
-function checkPhone(data){
-
-  const phone=Number(data.time.Phone||0);
-  const limit=Number(app.settings.phoneLimit||180);
-
-  const box=document.getElementById("phoneAlert");
-
-  if(phone>limit){
-
-    box.innerHTML=`
-      <div class="alert">
-        🚨 Phone time is ${phone} min — above your ${limit} min limit.
-        <br>
-        Study: ${Number(data.time.Study||0)} min.
-      </div>
-    `;
-
-  }else{
-
-    box.innerHTML=`
-      <div class="small">
-        📱 Phone: ${phone} min / ${limit} min limit
-      </div>
-    `;
-  }
-}
-
-function savePhoneLimit(){
-
-  const value=Number(
-    document.getElementById("phoneLimit").value
-  );
-
-  if(value<=0){
-    alert("Enter a valid phone limit.");
-    return;
-  }
-
-  app.settings.phoneLimit=value;
-
-  saveApp();
-
-  const data=getDayData(getTodayKey());
-  checkPhone(data);
-}
-
-function formatMinutes(min){
-
-  min=Number(min)||0;
-
-  const h=Math.floor(min/60);
-  const m=min%60;
-
-  if(h===0) return `${m} min`;
-  if(m===0) return `${h} hr`;
-
-  return `${h} hr ${m} min`;
-}
-
-
-/* RATING */
-
-function setRating(value){
-
-  const data=getDayData(getTodayKey());
-
-  data.rating=value;
-
-  saveApp();
-
-  renderRating(data);
-}
-
-function renderRating(data){
-
-  document.querySelectorAll("#ratingButtons button")
-    .forEach((btn,i)=>{
-      btn.classList.toggle(
-        "selected",
-        i+1===Number(data.rating)
-      );
-    });
-}
-
-
-/* REFLECTION */
-
-function saveReflection(){
-
-  const data=getDayData(getTodayKey());
-
-  data.reflection={
-    missed:document.getElementById("reflectionMissed").value,
-    why:document.getElementById("reflectionWhy").value,
-    tomorrow:document.getElementById("reflectionTomorrow").value
-  };
-
-  saveApp();
-
-  alert("Reflection saved.");
-}
-
-function renderReflection(data){
-
-  document.getElementById("reflectionMissed").value=
-    data.reflection.missed||"";
-
-  document.getElementById("reflectionWhy").value=
-    data.reflection.why||"";
-
-  document.getElementById("reflectionTomorrow").value=
-    data.reflection.tomorrow||"";
-}
-
-
-/* WEEKLY */
 
 function getSaturdayStart(date){
 
@@ -1473,7 +1171,6 @@ function getSaturdayStart(date){
 
   const day=d.getDay();
 
-  // Saturday = 0 in our weekly system
   const diff=(day+1)%7;
 
   d.setDate(d.getDate()-diff);
@@ -1481,680 +1178,1476 @@ function getSaturdayStart(date){
   return d;
 }
 
-function getWeekKey(date){
 
-  return getDateKey(
-    getSaturdayStart(date)
-  );
-}
+function weekKey(start){
 
-function getWeekData(){
+  return dateKey(start);
 
-  const key=getDateKey(currentWeekStart);
-
-  if(!app.weeks[key]){
-    app.weeks[key]=blankWeek();
-  }
-
-  return app.weeks[key];
-}
-
-function changeWeek(days){
-
-  currentWeekStart.setDate(
-    currentWeekStart.getDate()+days
-  );
-
-  renderWeekly();
-}
-
-function goCurrentWeek(){
-
-  currentWeekStart=getSaturdayStart(new Date());
-
-  renderWeekly();
-}
-
-function renderWeekly(){
-
-  const picker=document.getElementById("weekPicker");
-
-  picker.value=getDateKey(currentWeekStart);
-
-  picker.onchange=function(){
-
-    if(!this.value) return;
-
-    currentWeekStart=getSaturdayStart(
-      parseDateKey(this.value)
-    );
-
-    renderWeekly();
-  };
-
-  const week=getWeekData();
-
-  const days=[];
-
-  for(let i=0;i<7;i++){
-
-    const d=new Date(currentWeekStart);
-
-    d.setDate(currentWeekStart.getDate()+i);
-
-    days.push(d);
-  }
-
-  document.getElementById("weeklyDays").innerHTML=
-    days.map((date,i)=>renderWeekDay(date,i,week)).join("");
-
-  updateWeeklyStats(week);
-}
-
-function renderWeekDay(date,index,week){
-
-  const tasks=week.days[index]||[];
-
-  let html="";
-
-  for(let i=0;i<5;i++){
-
-    const task=tasks[i]||{
-      id:`empty-${index}-${i}`,
-      text:"",
-      done:false
-    };
-
-    html+=`
-      <div class="week-task">
-
-        <input
-          type="checkbox"
-          ${task.done?"checked":""}
-          onchange="toggleWeeklyTask(${index},${i})"
-        >
-
-        <input
-          type="text"
-          value="${escapeHtml(task.text)}"
-          placeholder="Task ${i+1}"
-          onchange="updateWeeklyTask(${index},${i},this.value)"
-        >
-
-        <button
-          class="delete"
-          onclick="clearWeeklyTask(${index},${i})"
-        >×</button>
-
-      </div>
-    `;
-  }
-
-  return `
-    <div class="card week-day">
-
-      <h3>
-        ${date.toLocaleDateString(undefined,{weekday:"long"})}
-      </h3>
-
-      <div class="date">
-        ${formatDate(date)}
-      </div>
-
-      ${html}
-
-    </div>
-  `;
-}
-
-function ensureWeeklyTask(index,slot){
-
-  const week=getWeekData();
-
-  if(!week.days[index]){
-    week.days[index]=[];
-  }
-
-  while(week.days[index].length<=slot){
-
-    week.days[index].push({
-      id:Date.now()+Math.random(),
-      text:"",
-      done:false
-    });
-  }
-
-  return week.days[index][slot];
-}
-
-function updateWeeklyTask(index,slot,text){
-
-  const task=ensureWeeklyTask(index,slot);
-
-  task.text=text;
-
-  saveApp();
-
-  updateWeeklyStats(getWeekData());
-}
-
-function toggleWeeklyTask(index,slot){
-
-  const task=ensureWeeklyTask(index,slot);
-
-  task.done=!task.done;
-
-  saveApp();
-
-  renderWeekly();
-}
-
-function clearWeeklyTask(index,slot){
-
-  const week=getWeekData();
-
-  if(!week.days[index]) return;
-
-  if(week.days[index][slot]){
-
-    week.days[index][slot]={
-      id:Date.now()+Math.random(),
-      text:"",
-      done:false
-    };
-
-    // Remove empty trailing slots
-    while(
-      week.days[index].length &&
-      !week.days[index][week.days[index].length-1].text &&
-      !week.days[index][week.days[index].length-1].done
-    ){
-      week.days[index].pop();
-    }
-  }
-
-  saveApp();
-  renderWeekly();
-}
-
-function updateWeeklyStats(week){
-
-  let total=0;
-  let completed=0;
-
-  Object.values(week.days).forEach(day=>{
-
-    day.forEach(task=>{
-
-      if(task.text.trim()){
-
-        total++;
-
-        if(task.done){
-          completed++;
-        }
-
-      }
-
-    });
-
-  });
-
-  const percent=
-    total===0 ? 0 : Math.round(completed/total*100);
-
-  document.getElementById("weeklyCompleted").textContent=completed;
-  document.getElementById("weeklyTotal").textContent=total;
-  document.getElementById("weeklyPercent").textContent=percent+"%";
-  document.getElementById("weeklyProgress").style.width=percent+"%";
-
-  document.getElementById("weeklyStudyTime").value=
-    week.studyTime||0;
-
-  document.getElementById("weeklyPhoneTime").value=
-    week.phoneTime||0;
-
-  document.getElementById("weeklyTimeResult").innerHTML=`
-    <p>
-      📚 Study: <b>${formatMinutes(week.studyTime||0)}</b>
-      &nbsp; | &nbsp;
-      📱 Phone: <b>${formatMinutes(week.phoneTime||0)}</b>
-    </p>
-  `;
-}
-
-function saveWeeklyTime(){
-
-  const week=getWeekData();
-
-  week.studyTime=Math.max(
-    0,
-    Number(document.getElementById("weeklyStudyTime").value)||0
-  );
-
-  week.phoneTime=Math.max(
-    0,
-    Number(document.getElementById("weeklyPhoneTime").value)||0
-  );
-
-  saveApp();
-
-  updateWeeklyStats(week);
 }
 
 
-/* MONTHLY */
+function formatMonth(date){
 
-function monthKey(){
-
-  return `${currentMonth.getFullYear()}-${String(
-    currentMonth.getMonth()+1
-  ).padStart(2,"0")}`;
-}
-
-function getMonthData(){
-
-  const key=monthKey();
-
-  if(!app.months[key]){
-    app.months[key]=blankMonth();
-  }
-
-  return app.months[key];
-}
-
-function changeMonth(amount){
-
-  currentMonth=new Date(
-    currentMonth.getFullYear(),
-    currentMonth.getMonth()+amount,
-    1
-  );
-
-  renderMonthly();
-}
-
-function renderMonthly(){
-
-  document.getElementById("monthTitle").textContent=
-    currentMonth.toLocaleDateString(undefined,{
+  return date.toLocaleDateString(
+    undefined,
+    {
       month:"long",
       year:"numeric"
+    }
+  );
+
+}
+
+
+function formatShortRange(start){
+
+  const end=new Date(start);
+
+  end.setDate(end.getDate()+6);
+
+  return start.toLocaleDateString(
+    undefined,
+    {day:"numeric",month:"short",year:"numeric"}
+  )
+  +" – "+
+  end.toLocaleDateString(
+    undefined,
+    {day:"numeric",month:"short",year:"numeric"}
+  );
+
+}
+
+
+function formatMinutes(mins){
+
+  mins=Math.max(0,Number(mins)||0);
+
+  const h=Math.floor(mins/60);
+  const m=mins%60;
+
+  if(h===0)return m+"m";
+
+  if(m===0)return h+"h";
+
+  return h+"h "+m+"m";
+}
+
+
+function escapeHtml(value){
+
+  return String(value)
+    .replace(/[&<>"']/g,function(c){
+      return {
+        "&":"&amp;",
+        "<":"&lt;",
+        ">":"&gt;",
+        '"':"&quot;",
+        "'":"&#039;"
+      }[c];
     });
 
-  const data=getMonthData();
+}
 
-  document.getElementById("monthlyGoals").innerHTML=
-    data.goals.map((goal,i)=>`
 
-      <div class="goal">
+/* =====================================================
+   DAY DATA
+===================================================== */
+
+function getDay(key){
+
+  if(!app.days[key]){
+
+    app.days[key]={
+      tasks:[],
+      study:[],
+      time:{
+        Study:0,
+        Phone:0,
+        Sleep:0,
+        College:0,
+        Health:0,
+        Personal:0,
+        Other:0
+      },
+      rating:0,
+      planned:"",
+      why:"",
+      mustdo:""
+    };
+
+  }
+
+  const x=app.days[key];
+
+  if(!Array.isArray(x.tasks))x.tasks=[];
+  if(!Array.isArray(x.study))x.study=[];
+
+  if(!x.time)x.time={};
+
+  CATEGORIES.forEach(c=>{
+    if(typeof x.time[c]!=="number")
+      x.time[c]=0;
+  });
+
+  if(typeof x.rating!=="number")x.rating=0;
+
+  return x;
+}
+
+
+function todayKey(){
+
+  return dateKey(new Date());
+
+}
+
+
+/* =====================================================
+   PAGE NAVIGATION
+===================================================== */
+
+function showPage(id){
+
+  document
+    .querySelectorAll(".page")
+    .forEach(p=>p.classList.remove("active"));
+
+  document
+    .getElementById(id)
+    .classList.add("active");
+
+  renderAll();
+
+  window.scrollTo(0,0);
+
+}
+
+
+/* =====================================================
+   HOME
+===================================================== */
+
+function renderHome(){
+
+  const x=getDay(todayKey());
+
+  const total=x.tasks.length;
+
+  const done=x.tasks.filter(
+    t=>t.done
+  ).length;
+
+  const pending=total-done;
+
+  const percent=
+    total ? Math.round(done/total*100) : 0;
+
+  const phone=x.time.Phone||0;
+
+  const limit=app.settings.phoneLimit;
+
+
+  document.getElementById("homeDate")
+    .textContent=niceDate(new Date());
+
+
+  document.getElementById("homePending")
+    .textContent=pending;
+
+
+  document.getElementById("homeProgressText")
+    .textContent=done+" / "+total;
+
+
+  document.getElementById("homeBar")
+    .style.width=percent+"%";
+
+
+  document.getElementById("phoneLimit")
+    .value=limit;
+
+
+  document.getElementById("studyTarget")
+    .value=app.settings.studyTarget;
+
+
+  const phoneBox=
+    document.getElementById("phoneHome");
+
+
+  phoneBox.className=
+    "card "+(phone>limit?"danger-card":"");
+
+
+  phoneBox.innerHTML=`
+
+    <h2 class="${phone>limit?"danger-title":""}">
+      ${phone>limit?"🚨":"📱"} Phone Time
+    </h2>
+
+    <p>
+      <b>${formatMinutes(phone)}</b>
+      today · limit
+      <b>${formatMinutes(limit)}</b>
+    </p>
+
+    <p class="small" style="margin-top:6px">
+      ${
+        phone>limit
+        ?
+        "You are "+formatMinutes(phone-limit)+
+        " over your limit. Protect the rest of today."
+        :
+        formatMinutes(limit-phone)+
+        " remaining before your limit."
+      }
+    </p>
+
+  `;
+
+
+  let futureMessage;
+
+  if(total===0){
+
+    futureMessage=
+      "Your plan is empty. Decide what actually matters today, then start.";
+
+  }else if(pending>0){
+
+    futureMessage=
+      "You have "+pending+
+      " unfinished task(s). If you keep postponing them, they will compete with tomorrow's work.";
+
+  }else{
+
+    futureMessage=
+      "You finished today's planned tasks. Keep tomorrow from becoming another overloaded list.";
+
+  }
+
+
+  document.getElementById("futureMessage")
+    .textContent=futureMessage;
+
+}
+
+
+function changeSettings(){
+
+  const phone=Number(
+    document.getElementById("phoneLimit").value
+  );
+
+  const study=Number(
+    document.getElementById("studyTarget").value
+  );
+
+  app.settings.phoneLimit=Math.max(0,phone);
+  app.settings.studyTarget=Math.max(0,study);
+
+  saveApp();
+
+  renderHome();
+
+}
+
+
+/* =====================================================
+   DAILY TASKS
+===================================================== */
+
+function addTask(){
+
+  const input=
+    document.getElementById("newTask");
+
+  const text=input.value.trim();
+
+  if(!text)return;
+
+  const x=getDay(todayKey());
+
+  if(x.tasks.length>=12){
+
+    alert("Daily Plan can contain a maximum of 12 tasks.");
+
+    return;
+  }
+
+  x.tasks.push({
+    text:text,
+    done:false,
+    cat:"Other"
+  });
+
+  input.value="";
+
+  saveApp();
+
+  renderDaily();
+  renderHome();
+
+}
+
+
+function toggleTask(i){
+
+  const x=getDay(todayKey());
+
+  if(!x.tasks[i])return;
+
+  x.tasks[i].done=
+    !x.tasks[i].done;
+
+  saveApp();
+
+  renderDaily();
+  renderHome();
+
+}
+
+
+function deleteTask(i){
+
+  const x=getDay(todayKey());
+
+  x.tasks.splice(i,1);
+
+  saveApp();
+
+  renderDaily();
+  renderHome();
+
+}
+
+
+function changeTaskCategory(i,value){
+
+  const x=getDay(todayKey());
+
+  if(x.tasks[i]){
+
+    x.tasks[i].cat=value;
+
+    saveApp();
+
+  }
+
+}
+
+
+/* =====================================================
+   STUDY
+===================================================== */
+
+function addStudy(){
+
+  const type=
+    document.getElementById("studyType").value;
+
+  const mins=Number(
+    document.getElementById("studyMin").value
+  );
+
+  if(!mins || mins<1)return;
+
+  const x=getDay(todayKey());
+
+  x.study.push({
+    type:type,
+    mins:mins
+  });
+
+  x.time.Study=
+    x.study.reduce(
+      (sum,s)=>sum+Number(s.mins||0),
+      0
+    );
+
+  document.getElementById("studyMin").value="";
+
+  saveApp();
+
+  renderDaily();
+
+}
+
+
+function deleteStudy(i){
+
+  const x=getDay(todayKey());
+
+  x.study.splice(i,1);
+
+  x.time.Study=
+    x.study.reduce(
+      (sum,s)=>sum+Number(s.mins||0),
+      0
+    );
+
+  saveApp();
+
+  renderDaily();
+
+}
+
+
+/* =====================================================
+   DAILY TIME
+===================================================== */
+
+function setTime(category,value){
+
+  const x=getDay(todayKey());
+
+  x.time[category]=
+    Math.max(0,Number(value)||0);
+
+  if(category==="Study" && x.study.length){
+
+    // Manual Study time and subtype total remain consistent:
+    // study time is represented by subtype entries.
+  }
+
+  saveApp();
+
+  renderDaily();
+  renderHome();
+
+}
+
+
+/* =====================================================
+   DAILY RENDER
+===================================================== */
+
+function renderDaily(){
+
+  const x=getDay(todayKey());
+
+  const total=x.tasks.length;
+
+  const done=x.tasks.filter(
+    t=>t.done
+  ).length;
+
+
+  document.getElementById("dailyCount")
+    .textContent=done+" / "+total;
+
+
+  const taskBox=
+    document.getElementById("dailyTasks");
+
+
+  if(!total){
+
+    taskBox.innerHTML=
+      `<div class="empty">
+        No tasks yet. Add the work you actually want to complete today. 🌷
+      </div>`;
+
+  }else{
+
+    taskBox.innerHTML=
+      x.tasks.map((t,i)=>`
+
+        <div class="task">
+
+          <input
+            type="checkbox"
+            ${t.done?"checked":""}
+            onchange="toggleTask(${i})">
+
+          <span
+            class="tasktext ${t.done?"done":""}">
+            ${escapeHtml(t.text)}
+          </span>
+
+          <select
+            onchange="changeTaskCategory(${i},this.value)">
+
+            ${CATEGORIES.map(c=>`
+              <option
+                value="${c}"
+                ${t.cat===c?"selected":""}>
+                ${c}
+              </option>
+            `).join("")}
+
+          </select>
+
+          <button
+            class="delete"
+            onclick="deleteTask(${i})">
+            ×
+          </button>
+
+        </div>
+
+      `).join("");
+
+  }
+
+
+  const studyBox=
+    document.getElementById("studyRows");
+
+
+  if(!x.study.length){
+
+    studyBox.innerHTML=
+      `<div class="empty">
+        No study time recorded yet.
+      </div>`;
+
+  }else{
+
+    studyBox.innerHTML=
+      x.study.map((s,i)=>`
+
+        <div
+          class="row"
+          style="padding:7px 0;border-bottom:1px solid #f1e8eb">
+
+          <span>
+            📚 ${escapeHtml(s.type)}
+          </span>
+
+          <span>
+            <b>${formatMinutes(s.mins)}</b>
+
+            <button
+              class="delete"
+              onclick="deleteStudy(${i})">
+              ×
+            </button>
+          </span>
+
+        </div>
+
+      `).join("");
+
+  }
+
+
+  document.getElementById("timeRows")
+    .innerHTML=CATEGORIES.map(c=>`
+
+      <div class="time-row">
+
+        <label>
+          ${EMOJIS[c]} ${c}
+        </label>
 
         <input
-          type="checkbox"
-          ${goal.done?"checked":""}
-          onchange="updateGoal(${i},'done',this.checked)"
-        >
+          type="number"
+          min="0"
+          value="${x.time[c]||0}"
+          onchange="setTime('${c}',this.value)">
 
-        <input
-          type="text"
-          value="${escapeHtml(goal.text)}"
-          placeholder="Important goal ${i+1}"
-          onchange="updateGoal(${i},'text',this.value)"
-        >
+        <span class="small">min</span>
 
       </div>
 
     `).join("");
 
-  updateMonthlyProgress(data);
+
+  document.getElementById("planned")
+    .value=x.planned||"";
+
+  document.getElementById("why")
+    .value=x.why||"";
+
+  document.getElementById("mustdo")
+    .value=x.mustdo||"";
+
+
+  renderDailyAnalysis();
+  renderRating();
+
 }
 
-function updateGoal(index,field,value){
 
-  const data=getMonthData();
+function renderDailyAnalysis(){
 
-  data.goals[index][field]=value;
+  const x=getDay(todayKey());
 
-  saveApp();
-
-  updateMonthlyProgress(data);
-}
-
-function updateMonthlyProgress(data){
-
-  const filled=data.goals.filter(
-    g=>g.text.trim()
+  const values=CATEGORIES.map(
+    c=>Number(x.time[c]||0)
   );
 
-  const completed=filled.filter(
-    g=>g.done
-  ).length;
-
-  const percent=
-    filled.length===0
-      ? 0
-      : Math.round(completed/filled.length*100);
-
-  document.getElementById("monthlyProgress").style.width=
-    percent+"%";
-
-  document.getElementById("monthlyPercent").innerHTML=
-    `<b>${completed}/${filled.length} goals completed — ${percent}%</b>`;
-}
-
-function saveMonthly(){
-
-  saveApp();
-
-  alert("Monthly plan saved.");
-}
+  const total=
+    values.reduce((a,b)=>a+b,0);
 
 
-/* CALENDAR */
+  const pie=document.getElementById("pie");
 
-function changeCalMonth(amount){
 
-  currentCalMonth=new Date(
-    currentCalMonth.getFullYear(),
-    currentCalMonth.getMonth()+amount,
-    1
-  );
+  if(!total){
 
-  renderCalendar();
-}
+    pie.style.background=
+      "conic-gradient(#ead7df 0 100%)";
 
-function renderCalendar(){
+  }else{
 
-  document.getElementById("calTitle").textContent=
-    currentCalMonth.toLocaleDateString(undefined,{
-      month:"long",
-      year:"numeric"
+    const palette=[
+      "#b7849a",
+      "#d7aebe",
+      "#ead7df",
+      "#c9b6bf",
+      "#9e8b94",
+      "#c2a5b1",
+      "#e0ccd4"
+    ];
+
+    let start=0;
+
+    const stops=[];
+
+    CATEGORIES.forEach((c,i)=>{
+
+      const amount=
+        Number(x.time[c]||0)/
+        total*100;
+
+      const end=start+amount;
+
+      stops.push(
+        palette[i]+" "+start+"% "+end+"%"
+      );
+
+      start=end;
+
     });
 
-  const year=currentCalMonth.getFullYear();
-  const month=currentCalMonth.getMonth();
+    pie.style.background=
+      "conic-gradient("+stops.join(",")+")";
 
-  const first=new Date(year,month,1);
-  const daysInMonth=new Date(year,month+1,0).getDate();
+  }
 
-  // Saturday-first calendar
-  const firstOffset=(first.getDay()+1)%7;
 
-  const grid=document.getElementById("calendarGrid");
+  document.getElementById("legend")
+    .innerHTML=CATEGORIES.map(c=>
 
-  const heads=[
-    "Sat","Sun","Mon","Tue","Wed","Thu","Fri"
+      `${EMOJIS[c]} ${c} —
+      <b>${formatMinutes(x.time[c]||0)}</b>`
+
+    ).join("<br>");
+
+}
+
+
+function renderRating(){
+
+  const r=getDay(todayKey()).rating;
+
+  document.getElementById("stars")
+    .innerHTML=[1,2,3,4,5].map(i=>`
+
+      <button
+        class="star"
+        onclick="setRating(${i})">
+        ${i<=r?"★":"☆"}
+      </button>
+
+    `).join("");
+
+  document.getElementById("ratingText")
+    .textContent=
+      r
+      ? "Today's rating: "+r+"/5"
+      : "Rate how much of the day you actually used.";
+
+}
+
+
+function setRating(r){
+
+  getDay(todayKey()).rating=r;
+
+  saveApp();
+
+  renderRating();
+
+}
+
+
+function saveReflection(){
+
+  const x=getDay(todayKey());
+
+  x.planned=
+    document.getElementById("planned").value;
+
+  x.why=
+    document.getElementById("why").value;
+
+  x.mustdo=
+    document.getElementById("mustdo").value;
+
+  saveApp();
+
+  alert("🌷 Reflection saved.");
+
+}
+
+
+/* =====================================================
+   WEEKLY
+===================================================== */
+
+function changeWeek(amount){
+
+  currentWeekStart.setDate(
+    currentWeekStart.getDate()+
+    amount*7
+  );
+
+  renderWeekly();
+
+}
+
+
+function renderWeekly(){
+
+  const start=currentWeekStart;
+
+  const end=new Date(start);
+
+  end.setDate(end.getDate()+6);
+
+
+  document.getElementById("weekLabel")
+    .textContent=formatShortRange(start);
+
+
+  const names=[
+    "Sat","Sun","Mon",
+    "Tue","Wed","Thu","Fri"
   ];
 
-  let html=heads.map(
-    h=>`<div class="cal-head">${h}</div>`
-  ).join("");
 
-  for(let i=0;i<firstOffset;i++){
-    html+=`<div class="cal-cell empty"></div>`;
-  }
+  let html='<div class="weekgrid">';
 
-  for(let day=1;day<=daysInMonth;day++){
+  let total=0;
+  let done=0;
+  let study=0;
+  let phone=0;
 
-    const date=new Date(year,month,day);
-    const key=getDateKey(date);
 
-    const today=key===getTodayKey();
+  for(let i=0;i<7;i++){
 
-    const events=app.events.filter(
-      e=>e.date===key
+    const d=new Date(start);
+
+    d.setDate(start.getDate()+i);
+
+    const key=dateKey(d);
+
+    const x=getDay(key);
+
+    total+=x.tasks.length;
+
+    done+=x.tasks.filter(
+      t=>t.done
+    ).length;
+
+    study+=x.study.reduce(
+      (a,s)=>a+Number(s.mins||0),
+      0
     );
 
+    phone+=Number(x.time.Phone||0);
+
+
     html+=`
-      <div
-        class="cal-cell ${today?"today":""}"
-        onclick="addCalendarEvent('${key}')"
-      >
 
-        <div class="cal-number">${day}</div>
+      <div class="weekcol">
 
-        ${events.map(e=>`
-          <div class="event"
-            onclick="event.stopPropagation();deleteCalendarEvent('${e.id}')">
-            📌 ${escapeHtml(e.text)}
-          </div>
-        `).join("")}
+        <div class="weekday">
+          ${names[i]}
+        </div>
+
+        <div class="date-small">
+          ${d.getDate()}
+        </div>
+
+        ${
+          x.tasks.length
+          ?
+          x.tasks.map((t,j)=>`
+
+            <div class="mini">
+
+              <input
+                type="checkbox"
+                ${t.done?"checked":""}
+                onchange="weekToggle('${key}',${j})">
+
+              <span
+                class="${t.done?"done":""}">
+                ${escapeHtml(t.text)}
+              </span>
+
+            </div>
+
+          `).join("")
+          :
+          `<div
+            style="font-size:9px;color:#aa9ba1;margin-top:9px">
+            No tasks
+          </div>`
+        }
 
       </div>
+
     `;
+
   }
 
-  grid.innerHTML=html;
+  html+="</div>";
 
-  renderEventList(year,month);
+  document.getElementById("weekPlan")
+    .innerHTML=html;
+
+
+  document.getElementById("wTasks")
+    .textContent=done+" / "+total;
+
+  document.getElementById("wStudy")
+    .textContent=formatMinutes(study);
+
+  document.getElementById("wPhone")
+    .textContent=formatMinutes(phone);
+
+  document.getElementById("wPct")
+    .textContent=
+      total
+      ? Math.round(done/total*100)+"%"
+      : "0%";
+
 }
 
-function addCalendarEvent(dateKey){
 
-  const text=prompt(
-    "What important event/routine is on this date?"
-  );
+function weekToggle(key,index){
 
-  if(!text || !text.trim()) return;
+  const x=getDay(key);
 
-  app.events.push({
-    id:Date.now()+Math.random(),
-    date:dateKey,
-    text:text.trim()
-  });
+  if(!x.tasks[index])return;
+
+  x.tasks[index].done=
+    !x.tasks[index].done;
 
   saveApp();
 
-  renderCalendar();
+  renderWeekly();
+
+  if(key===todayKey()){
+    renderHome();
+  }
+
 }
 
-function deleteCalendarEvent(id){
 
-  const event=app.events.find(
-    e=>String(e.id)===String(id)
-  );
+/* =====================================================
+   MONTHLY
+===================================================== */
 
-  if(!event) return;
+function getMonthGoals(){
 
-  if(!confirm(
-    `Delete "${event.text}" from Calendar?`
-  )) return;
+  const key=monthKey(currentMonthlyMonth);
 
-  app.events=app.events.filter(
-    e=>String(e.id)!==String(id)
-  );
+  if(!app.months[key]){
 
-  saveApp();
+    app.months[key]=
+      Array.from(
+        {length:10},
+        ()=>({
+          text:"",
+          done:false
+        })
+      );
 
-  renderCalendar();
+  }
+
+  return app.months[key];
+
 }
 
-function renderEventList(year,month){
 
-  const prefix=
-    `${year}-${String(month+1).padStart(2,"0")}`;
+function changeMonth(amount){
 
-  const events=app.events
-    .filter(e=>e.date.startsWith(prefix))
-    .sort((a,b)=>a.date.localeCompare(b.date));
+  currentMonthlyMonth.setMonth(
+    currentMonthlyMonth.getMonth()+amount
+  );
 
-  const box=document.getElementById("eventList");
+  renderMonthly();
 
-  if(events.length===0){
+}
 
-    box.innerHTML=`
-      <div class="empty">
-        No calendar events this month.
-      </div>
-    `;
+
+function addGoal(){
+
+  const input=
+    document.getElementById("newGoal");
+
+  const text=input.value.trim();
+
+  if(!text)return;
+
+  const goals=getMonthGoals();
+
+  const empty=goals.find(
+    g=>!g.text
+  );
+
+  if(!empty){
+
+    alert("This month already has 10 goals.");
 
     return;
   }
 
-  box.innerHTML=events.map(e=>`
+  empty.text=text;
 
-    <div class="task">
+  input.value="";
 
-      <div class="task-main">
-        <div class="task-title">
-          📌 ${escapeHtml(e.text)}
-        </div>
+  saveApp();
 
-        <div class="task-meta">
-          ${formatDate(parseDateKey(e.date))}
-        </div>
-      </div>
+  renderMonthly();
 
-      <button
-        class="delete"
-        onclick="deleteCalendarEvent('${e.id}')"
-      >×</button>
-
-    </div>
-
-  `).join("");
 }
 
 
-/* POPUPS */
+function goalToggle(i){
+
+  const goals=getMonthGoals();
+
+  if(!goals[i].text)return;
+
+  goals[i].done=
+    !goals[i].done;
+
+  saveApp();
+
+  renderMonthly();
+
+}
+
+
+function deleteGoal(i){
+
+  const goals=getMonthGoals();
+
+  goals[i]={
+    text:"",
+    done:false
+  };
+
+  saveApp();
+
+  renderMonthly();
+
+}
+
+
+function renderMonthly(){
+
+  const goals=getMonthGoals();
+
+  const done=goals.filter(
+    g=>g.done
+  ).length;
+
+
+  document.getElementById("monthLabel")
+    .textContent=
+      formatMonth(currentMonthlyMonth);
+
+
+  document.getElementById("mCount")
+    .textContent=done+" / 10";
+
+
+  document.getElementById("mBar")
+    .style.width=(done*10)+"%";
+
+
+  document.getElementById("mText")
+    .textContent=
+      done+" of 10 goals completed for "+
+      formatMonth(currentMonthlyMonth)+".";
+
+
+  document.getElementById("monthlyTasks")
+    .innerHTML=goals.map((g,i)=>`
+
+      <div class="task">
+
+        <input
+          type="checkbox"
+          ${g.done?"checked":""}
+          ${g.text?"":"disabled"}
+          onchange="goalToggle(${i})">
+
+        <span
+          class="tasktext ${g.done?"done":""}">
+          ${
+            g.text
+            ?
+            escapeHtml(g.text)
+            :
+            '<span class="small">Empty goal box</span>'
+          }
+        </span>
+
+        ${
+          g.text
+          ?
+          `<button
+             class="delete"
+             onclick="deleteGoal(${i})">
+             ×
+           </button>`
+          :
+          ""
+        }
+
+      </div>
+
+    `).join("");
+
+}
+
+
+/* =====================================================
+   CALENDAR EVENTS
+===================================================== */
+
+function addEvent(){
+
+  const date=
+    document.getElementById("eventDate").value;
+
+  const text=
+    document.getElementById("eventText").value.trim();
+
+  if(!date || !text){
+
+    alert("Choose a date and write the event.");
+
+    return;
+  }
+
+
+  app.events.push({
+    id:Date.now()+"_"+Math.random(),
+    date:date,
+    text:text
+  });
+
+
+  document.getElementById("eventDate").value="";
+  document.getElementById("eventText").value="";
+
+  saveApp();
+
+  renderCalendar();
+
+}
+
+
+function deleteEvent(id){
+
+  app.events=
+    app.events.filter(
+      e=>e.id!==id
+    );
+
+  saveApp();
+
+  renderCalendar();
+
+}
+
+
+function eventsForDate(key){
+
+  return app.events.filter(
+    e=>e.date===key
+  );
+
+}
+
+
+function changeCalendarMonth(amount){
+
+  currentCalendarMonth.setMonth(
+    currentCalendarMonth.getMonth()+amount
+  );
+
+  renderCalendar();
+
+}
+
+
+function renderCalendar(){
+
+  const y=
+    currentCalendarMonth.getFullYear();
+
+  const m=
+    currentCalendarMonth.getMonth();
+
+  const first=
+    new Date(y,m,1).getDay();
+
+  const days=
+    new Date(y,m+1,0).getDate();
+
+
+  document.getElementById("calTitle")
+    .textContent=
+      currentCalendarMonth.toLocaleDateString(
+        undefined,
+        {
+          month:"long",
+          year:"numeric"
+        }
+      );
+
+
+  let html="";
+
+
+  for(let i=0;i<first;i++){
+    html+="<div></div>";
+  }
+
+
+  for(let d=1;d<=days;d++){
+
+    const date=
+      new Date(y,m,d);
+
+    const key=dateKey(date);
+
+    const ev=eventsForDate(key);
+
+    const dayData=app.days[key];
+
+    let cls="day";
+
+
+    if(key===todayKey())
+      cls+=" today";
+
+
+    if(ev.length)
+      cls+=" event";
+
+
+    if(dayData && dayData.tasks.length){
+
+      const p=
+        dayData.tasks.filter(
+          t=>t.done
+        ).length/
+        dayData.tasks.length;
+
+      if(p>=.8)
+        cls+=" good";
+      else if(p>=.4)
+        cls+=" partial";
+      else
+        cls+=" bad";
+
+    }
+
+
+    html+=`
+
+      <button
+        class="${cls}"
+        onclick="selectCalendarDate('${key}')">
+
+        ${d}
+
+        ${
+          ev.length
+          ?
+          `<span class="event-dot">
+             📌 ${ev.length}
+           </span>`
+          :
+          ""
+        }
+
+      </button>
+
+    `;
+
+  }
+
+
+  document.getElementById("calendarGrid")
+    .innerHTML=html;
+
+
+  renderEventList();
+
+}
+
+
+function renderEventList(){
+
+  const list=
+    document.getElementById("eventList");
+
+
+  const sorted=[...app.events]
+    .sort(
+      (a,b)=>a.date.localeCompare(b.date)
+    );
+
+
+  if(!sorted.length){
+
+    list.innerHTML=
+      `<div class="empty">
+        No calendar events yet.
+      </div>`;
+
+    return;
+  }
+
+
+  list.innerHTML=
+    sorted.map(e=>`
+
+      <div class="event-item">
+
+        <div class="row">
+
+          <span>
+            📌 <b>${escapeHtml(e.date)}</b>
+          </span>
+
+          <button
+            class="delete"
+            onclick="deleteEvent('${e.id}')">
+            ×
+          </button>
+
+        </div>
+
+        <div style="margin-top:5px">
+          ${escapeHtml(e.text)}
+        </div>
+
+      </div>
+
+    `).join("");
+
+}
+
+
+function selectCalendarDate(key){
+
+  const events=eventsForDate(key);
+
+  const box=
+    document.getElementById("selectedDay");
+
+
+  if(!events.length){
+
+    box.innerHTML=`
+
+      <h2>📆 ${key}</h2>
+
+      <div class="empty">
+        No important calendar event on this date.
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  box.innerHTML=`
+
+    <h2>📌 ${key}</h2>
+
+    <div class="event-list">
+
+      ${events.map(e=>`
+
+        <div class="event-item">
+
+          <div class="row">
+
+            <b>${escapeHtml(e.text)}</b>
+
+            <button
+              class="delete"
+              onclick="deleteEvent('${e.id}')">
+              ×
+            </button>
+
+          </div>
+
+        </div>
+
+      `).join("")}
+
+    </div>
+
+  `;
+
+}
+
+
+/* =====================================================
+   POPUPS
+===================================================== */
 
 function closeModal(){
 
   document.getElementById("modalBg")
-    .classList.remove("show");
+    .style.display="none";
 
-  // After Calendar popup, show Daily popup separately.
-  if(window.pendingDailyPopup){
-
-    window.pendingDailyPopup=false;
-
-    setTimeout(()=>{
-      showDailyPopup();
-    },250);
-  }
 }
 
-function showPopup(content){
 
-  document.getElementById("modalContent").innerHTML=content;
+function showModal(icon,title,body){
+
+  document.getElementById("modalIcon")
+    .textContent=icon;
+
+  document.getElementById("modalTitle")
+    .textContent=title;
+
+  document.getElementById("modalBody")
+    .innerHTML=body;
 
   document.getElementById("modalBg")
-    .classList.add("show");
+    .style.display="flex";
+
 }
 
-function showCalendarPopup(){
-
-  const today=getTodayKey();
-
-  const events=app.events.filter(
-    e=>e.date===today
-  );
-
-  if(events.length===0){
-    return false;
-  }
-
-  showPopup(`
-    <h2>📅 Today's Calendar</h2>
-
-    <p>
-      You have an important event/routine today:
-    </p>
-
-    ${events.map(e=>`
-      <div class="task">
-        <div class="task-main">
-          <div class="task-title">
-            📌 ${escapeHtml(e.text)}
-          </div>
-        </div>
-      </div>
-    `).join("")}
-  `);
-
-  return true;
-}
-
-function showDailyPopup(){
-
-  const data=getDayData(getTodayKey());
-
-  const pending=data.tasks.filter(
-    t=>t.text.trim() && !t.done
-  );
-
-  if(pending.length===0){
-    return;
-  }
-
-  showPopup(`
-    <h2>🌷 Today's Daily Plan</h2>
-
-    <p>
-      You still have <b>${pending.length}</b>
-      pending task${pending.length>1?"s":""}.
-    </p>
-
-    ${pending.map(t=>`
-      <div class="task">
-        <div class="task-main">
-          <div class="task-title">
-            ☐ ${escapeHtml(t.text)}
-          </div>
-
-          <div class="task-meta">
-            ${escapeHtml(t.category)}
-          </div>
-        </div>
-      </div>
-    `).join("")}
-  `);
-}
 
 function startupPopups(){
 
-  const hasCalendar=showCalendarPopup();
+  const key=todayKey();
 
-  const data=getDayData(getTodayKey());
+  const x=getDay(key);
 
-  const pending=data.tasks.some(
-    t=>t.text.trim() && !t.done
+  const pending=x.tasks.filter(
+    t=>!t.done
   );
 
-  if(hasCalendar && pending){
+  const events=eventsForDate(key);
 
-    window.pendingDailyPopup=true;
+  const phone=x.time.Phone||0;
 
-  }else if(!hasCalendar && pending){
+  const limit=app.settings.phoneLimit;
 
-    setTimeout(()=>{
-      showDailyPopup();
-    },300);
+
+  /* Calendar popup has priority */
+
+  if(events.length){
+
+    const eventHTML=
+      events.map(e=>
+        `<div class="modal-item">
+          📌 ${escapeHtml(e.text)}
+        </div>`
+      ).join("");
+
+
+    showModal(
+      "📆",
+      "Today's Important Event",
+      eventHTML+
+      `
+      <p class="small" style="margin-top:9px">
+        This is a Calendar reminder.
+        It is separate from your Daily Plan.
+      </p>
+      `
+    );
+
+    return;
+
   }
+
+
+  /* Daily popup */
+
+  if(pending.length){
+
+    const taskHTML=
+      pending.map(t=>
+        `<div class="modal-item">
+          🌷 ${escapeHtml(t.text)}
+        </div>`
+      ).join("");
+
+
+    showModal(
+      "🐼",
+      pending.length+
+      " pending task"+
+      (pending.length===1?"":"s")+" today",
+      taskHTML+
+      `
+      <p class="small" style="margin-top:9px">
+        Phone time: ${formatMinutes(phone)}
+        ${
+          phone>limit
+          ?
+          " · 🚨 over your limit"
+          :
+          ""
+        }
+      </p>
+      `
+    );
+
+  }
+
 }
 
 
-/* UTIL */
+/* =====================================================
+   RENDER EVERYTHING
+===================================================== */
 
-function escapeHtml(value){
+function renderAll(){
 
-  return String(value??"")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+  renderHome();
+  renderDaily();
+  renderWeekly();
+  renderMonthly();
+  renderCalendar();
+
 }
 
 
-/* INITIALISE */
+/* =====================================================
+   START
+===================================================== */
 
-document.getElementById("phoneLimit").value=
-  app.settings.phoneLimit||180;
+renderAll();
 
-showPage("daily");
-
-setTimeout(startupPopups,500);
+setTimeout(
+  startupPopups,
+  600
+);
 
 </script>
 
