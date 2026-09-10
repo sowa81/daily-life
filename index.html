@@ -741,287 +741,77 @@ Save reflection
 
 
 
-/* =====================================================
-   WEEKLY
-===================================================== */
+<!-- WEEKLY -->
 
-function getWeekData(){
+<section id="weekly" class="page">
 
-  const key=weekKey(currentWeekStart);
+<button class="back" onclick="showPage('home')">
+← Home
+</button>
 
-  if(!app.weeks[key]){
-    app.weeks[key]={
-      days:[
-        [],[],[],[],[],[],[]
-      ]
-    };
-  }
 
-  if(!Array.isArray(app.weeks[key].days)){
-    app.weeks[key].days=[
-      [],[],[],[],[],[],[]
-    ];
-  }
+<div class="card">
 
-  return app.weeks[key];
-}
+<h2>📅 Weekly Plan</h2>
 
+<div class="week-picker">
 
-function changeWeek(amount){
+<button onclick="changeWeek(-1)">‹</button>
 
-  currentWeekStart.setDate(
-    currentWeekStart.getDate()+amount*7
-  );
+<div id="weekLabel" class="week-label"></div>
 
-  renderWeekly();
+<button onclick="changeWeek(1)">›</button>
 
-}
+</div>
 
+<p
+class="small"
+style="text-align:center;margin-top:7px">
+Select a whole week and plan Saturday → Friday.
+</p>
 
-function renderWeekly(){
+</div>
 
-  const start=currentWeekStart;
 
-  document.getElementById("weekLabel")
-    .textContent=formatShortRange(start);
+<div class="card">
 
-  const week=getWeekData();
+<div id="weekPlan"></div>
 
-  const names=[
-    "Sat","Sun","Mon",
-    "Tue","Wed","Thu","Fri"
-  ];
+</div>
 
-  let html='<div class="weekgrid">';
 
-  let total=0;
-  let done=0;
-  let study=0;
-  let phone=0;
+<div class="card">
 
+<h2>📊 Weekly Analysis</h2>
 
-  for(let i=0;i<7;i++){
+<div class="stats">
 
-    const d=new Date(start);
+<div class="stat">
+<div class="small">Tasks</div>
+<div class="num" id="wTasks">0 / 0</div>
+</div>
 
-    d.setDate(start.getDate()+i);
+<div class="stat">
+<div class="small">Study</div>
+<div class="num" id="wStudy">0h</div>
+</div>
 
-    const key=dateKey(d);
+<div class="stat">
+<div class="small">Phone</div>
+<div class="num" id="wPhone">0h</div>
+</div>
 
-    const dayData=app.days[key];
+<div class="stat">
+<div class="small">Completion</div>
+<div class="num" id="wPct">0%</div>
+</div>
 
-    const tasks=week.days[i] || [];
+</div>
 
+</div>
 
-    /* Weekly analysis */
+</section>
 
-    if(dayData){
-
-      study+=dayData.study.reduce(
-        (a,s)=>a+Number(s.mins||0),
-        0
-      );
-
-      phone+=Number(dayData.time.Phone||0);
-
-    }
-
-
-    total+=tasks.length;
-
-    done+=tasks.filter(
-      t=>t.done
-    ).length;
-
-
-    html+=`
-
-      <div class="weekcol">
-
-        <div class="weekday">
-          ${names[i]}
-        </div>
-
-        <div class="date-small">
-          ${d.getDate()}
-        </div>
-
-        ${
-          tasks.length
-          ?
-          tasks.map((t,j)=>`
-
-            <div class="mini">
-
-              <input
-                type="checkbox"
-                ${t.done?"checked":""}
-                onchange="toggleWeeklyTask(${i},${j})">
-
-              <span
-                class="${t.done?"done":""}"
-                style="flex:1">
-                ${escapeHtml(t.text)}
-              </span>
-
-              <button
-                class="delete"
-                onclick="deleteWeeklyTask(${i},${j})">
-                ×
-              </button>
-
-            </div>
-
-          `).join("")
-
-          :
-
-          `<div
-            style="
-              font-size:9px;
-              color:#aa9ba1;
-              margin-top:9px;
-              text-align:center">
-            No tasks
-          </div>`
-        }
-
-
-        ${
-          tasks.length<5
-          ?
-          `
-          <button
-            style="
-              width:100%;
-              border:0;
-              background:#f4e8ed;
-              border-radius:8px;
-              padding:5px 2px;
-              margin-top:5px;
-              color:var(--dark);
-              font-size:9px;
-              font-weight:bold"
-            onclick="addWeeklyTask(${i})">
-            ＋ Task
-          </button>
-          `
-          :
-          ""
-        }
-
-      </div>
-
-    `;
-
-  }
-
-
-  html+="</div>";
-
-  document.getElementById("weekPlan")
-    .innerHTML=html;
-
-
-  document.getElementById("wTasks")
-    .textContent=done+" / "+total;
-
-  document.getElementById("wStudy")
-    .textContent=formatMinutes(study);
-
-  document.getElementById("wPhone")
-    .textContent=formatMinutes(phone);
-
-  document.getElementById("wPct")
-    .textContent=
-      total
-      ? Math.round(done/total*100)+"%"
-      : "0%";
-
-}
-
-
-function addWeeklyTask(dayIndex){
-
-  const week=getWeekData();
-
-  if(!week.days[dayIndex]){
-    week.days[dayIndex]=[];
-  }
-
-  if(week.days[dayIndex].length>=5){
-
-    alert(
-      "You can have maximum 5 tasks for this day."
-    );
-
-    return;
-  }
-
-
-  const task=prompt(
-    "What task do you want to plan for this day?"
-  );
-
-  if(!task || !task.trim()){
-    return;
-  }
-
-
-  week.days[dayIndex].push({
-    text:task.trim(),
-    done:false
-  });
-
-  saveApp();
-
-  renderWeekly();
-
-}
-
-
-function toggleWeeklyTask(dayIndex,taskIndex){
-
-  const week=getWeekData();
-
-  if(
-    !week.days[dayIndex] ||
-    !week.days[dayIndex][taskIndex]
-  ){
-    return;
-  }
-
-  week.days[dayIndex][taskIndex].done=
-    !week.days[dayIndex][taskIndex].done;
-
-  saveApp();
-
-  renderWeekly();
-
-}
-
-
-function deleteWeeklyTask(dayIndex,taskIndex){
-
-  const week=getWeekData();
-
-  if(
-    !week.days[dayIndex] ||
-    !week.days[dayIndex][taskIndex]
-  ){
-    return;
-  }
-
-  week.days[dayIndex].splice(
-    taskIndex,
-    1
-  );
-
-  saveApp();
-
-  renderWeekly();
-
-}
 
 
 <!-- MONTHLY -->
