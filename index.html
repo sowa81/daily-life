@@ -1542,14 +1542,23 @@ function changeTaskCategory(i,value){
 
 function addStudy(){
 
-  const type=
-    document.getElementById("studyType").value;
+  const input=document.getElementById("studyType");
+  const type=input.value.trim();
 
   const mins=Number(
     document.getElementById("studyMin").value
   );
 
-  if(!mins || mins<1)return;
+  if(!type){
+    alert("Please enter the subject.");
+    input.focus();
+    return;
+  }
+
+  if(!mins || mins<1){
+    alert("Please choose study time.");
+    return;
+  }
 
   const x=getDay(todayKey());
 
@@ -1564,14 +1573,13 @@ function addStudy(){
       0
     );
 
+  input.value="";
   document.getElementById("studyMin").value="";
 
   saveApp();
-
   renderDaily();
 
 }
-
 
 function deleteStudy(i){
 
