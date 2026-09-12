@@ -742,301 +742,75 @@ Save reflection
 
 </section>
 
-
-
 <!-- WEEKLY -->
 
-/* =====================================================
-   WEEKLY
-===================================================== */
+<section id="weekly" class="page">
 
-function getWeekData(){
+<button class="back" onclick="showPage('home')">
+← Home
+</button>
 
-  const key=weekKey(currentWeekStart);
+<div class="card">
 
-  if(!app.weeks[key]){
+<div class="row">
+<h2>📅 Weekly Plan</h2>
 
-    app.weeks[key]={
-      days:[
-        [],[],[],[],[],[],[]
-      ]
-    };
+<div class="week-picker">
+<button onclick="changeWeek(-1)">‹</button>
 
-  }
+<div id="weekLabel" class="week-label"></div>
 
-  if(!Array.isArray(app.weeks[key].days)){
+<button onclick="changeWeek(1)">›</button>
+</div>
 
-    app.weeks[key].days=[
-      [],[],[],[],[],[],[]
-    ];
+</div>
 
-  }
+<p class="small" style="text-align:center;margin-top:7px">
+Plan your tasks separately for each day: Saturday → Friday.
+</p>
 
-  return app.weeks[key];
+</div>
 
-}
 
+<div class="card">
 
-function changeWeek(amount){
+<div id="weekPlan"></div>
 
-  currentWeekStart.setDate(
-    currentWeekStart.getDate()+
-    amount*7
-  );
+</div>
 
-  renderWeekly();
 
-}
+<div class="card">
 
+<h2>📊 Weekly Analysis</h2>
 
-function addWeeklyTask(dayIndex){
+<div class="stats">
 
-  const input=
-    document.getElementById(
-      "weeklyInput"+dayIndex
-    );
+<div class="stat">
+<div class="small">Tasks</div>
+<div class="num" id="wTasks">0 / 0</div>
+</div>
 
-  if(!input)return;
+<div class="stat">
+<div class="small">Study</div>
+<div class="num" id="wStudy">0m</div>
+</div>
 
-  const text=input.value.trim();
+<div class="stat">
+<div class="small">Phone</div>
+<div class="num" id="wPhone">0m</div>
+</div>
 
-  if(!text)return;
+<div class="stat">
+<div class="small">Completion</div>
+<div class="num" id="wPct">0%</div>
+</div>
 
-  const week=getWeekData();
+</div>
 
-  if(week.days[dayIndex].length>=5){
+</div>
 
-    alert("Maximum 5 tasks for one day.");
-
-    return;
-
-  }
-
-  week.days[dayIndex].push({
-    text:text,
-    done:false
-  });
-
-  input.value="";
-
-  saveApp();
-
-  renderWeekly();
-
-}
-
-
-function weekToggle(dayIndex,taskIndex){
-
-  const week=getWeekData();
-
-  const task=
-    week.days[dayIndex][taskIndex];
-
-  if(!task)return;
-
-  task.done=!task.done;
-
-  saveApp();
-
-  renderWeekly();
-
-}
-
-
-function deleteWeeklyTask(dayIndex,taskIndex){
-
-  const week=getWeekData();
-
-  week.days[dayIndex].splice(
-    taskIndex,
-    1
-  );
-
-  saveApp();
-
-  renderWeekly();
-
-}
-
-
-function renderWeekly(){
-
-  const start=currentWeekStart;
-
-  document.getElementById("weekLabel")
-    .textContent=formatShortRange(start);
-
-
-  const names=[
-    "Sat","Sun","Mon",
-    "Tue","Wed","Thu","Fri"
-  ];
-
-
-  const week=getWeekData();
-
-  let html='<div class="weekgrid">';
-
-  let total=0;
-  let done=0;
-
-
-  for(let i=0;i<7;i++){
-
-    const d=new Date(start);
-
-    d.setDate(
-      start.getDate()+i
-    );
-
-
-    const tasks=week.days[i] || [];
-
-    total+=tasks.length;
-
-    done+=tasks.filter(
-      t=>t.done
-    ).length;
-
-
-    html+=`
-
-      <div class="weekcol">
-
-        <div class="weekday">
-          ${names[i]}
-        </div>
-
-        <div class="date-small">
-          ${d.getDate()}
-        </div>
-
-        <div style="flex:1">
-
-          ${
-            tasks.length
-            ?
-            tasks.map((t,j)=>`
-
-              <div class="mini">
-
-                <input
-                  type="checkbox"
-                  ${t.done?"checked":""}
-                  onchange="
-                    weekToggle(${i},${j})
-                  ">
-
-                <span
-                  class="${t.done?"done":""}">
-                  ${escapeHtml(t.text)}
-                </span>
-
-                <button
-                  class="delete"
-                  onclick="
-                    deleteWeeklyTask(${i},${j})
-                  ">
-                  ×
-                </button>
-
-              </div>
-
-            `).join("")
-            :
-            `<div
-              style="
-                font-size:9px;
-                color:#aa9ba1;
-                margin-top:9px">
-              No tasks
-            </div>`
-          }
-
-        </div>
-
-
-        ${
-          tasks.length<5
-          ?
-          `
-          <div
-            style="
-              display:flex;
-              gap:3px;
-              margin-top:7px">
-
-            <input
-              id="weeklyInput${i}"
-              type="text"
-              placeholder="Add task"
-              style="
-                padding:5px;
-                font-size:9px">
-
-            <button
-              class="btn"
-              style="
-                padding:5px 7px;
-                font-size:10px"
-              onclick="
-                addWeeklyTask(${i})
-              ">
-              ＋
-            </button>
-
-          </div>
-          `
-          :
-          `<div
-            style="
-              font-size:8px;
-              color:#927f88;
-              margin-top:7px">
-            5/5 tasks
-          </div>`
-        }
-
-      </div>
-
-    `;
-
-  }
-
-
-  html+="</div>";
-
-  document.getElementById("weekPlan")
-    .innerHTML=html;
-
-
-  document.getElementById("wTasks")
-    .textContent=
-      done+" / "+total;
-
-
-  /*
-     Weekly Study & Phone are kept separate
-     from Daily Plan for now.
-  */
-
-  document.getElementById("wStudy")
-    .textContent="0m";
-
-  document.getElementById("wPhone")
-    .textContent="0m";
-
-
-  document.getElementById("wPct")
-    .textContent=
-      total
-      ? Math.round(done/total*100)+"%"
-      : "0%";
-
-}
-
-
+</section>
+              
 
 <!-- MONTHLY -->
 
@@ -2117,17 +1891,111 @@ function saveReflection(){
 
 }
 
-
 /* =====================================================
    WEEKLY
 ===================================================== */
 
+function getWeekData(){
+
+  const key=weekKey(currentWeekStart);
+
+  if(!app.weeks[key]){
+    app.weeks[key]={
+      days:[
+        [],[],[],[],[],[],[]
+      ]
+    };
+  }
+
+  if(!Array.isArray(app.weeks[key].days)){
+    app.weeks[key].days=[
+      [],[],[],[],[],[],[]
+    ];
+  }
+
+  // Make sure every day is an array
+  for(let i=0;i<7;i++){
+    if(!Array.isArray(app.weeks[key].days[i])){
+      app.weeks[key].days[i]=[];
+    }
+  }
+
+  return app.weeks[key];
+}
+
+
 function changeWeek(amount){
 
   currentWeekStart.setDate(
-    currentWeekStart.getDate()+
-    amount*7
+    currentWeekStart.getDate()+amount*7
   );
+
+  renderWeekly();
+
+}
+
+
+function addWeeklyTask(dayIndex){
+
+  const input=document.getElementById(
+    "weeklyInput"+dayIndex
+  );
+
+  if(!input)return;
+
+  const text=input.value.trim();
+
+  if(!text)return;
+
+  const week=getWeekData();
+
+  if(week.days[dayIndex].length>=5){
+
+    alert("Maximum 5 tasks for one day.");
+
+    return;
+  }
+
+  week.days[dayIndex].push({
+    text:text,
+    done:false
+  });
+
+  input.value="";
+
+  saveApp();
+
+  renderWeekly();
+
+}
+
+
+function weekToggle(dayIndex,taskIndex){
+
+  const week=getWeekData();
+
+  const task=week.days[dayIndex][taskIndex];
+
+  if(!task)return;
+
+  task.done=!task.done;
+
+  saveApp();
+
+  renderWeekly();
+
+}
+
+
+function deleteWeeklyTask(dayIndex,taskIndex){
+
+  const week=getWeekData();
+
+  if(!week.days[dayIndex][taskIndex])return;
+
+  week.days[dayIndex].splice(taskIndex,1);
+
+  saveApp();
 
   renderWeekly();
 
@@ -2136,12 +2004,7 @@ function changeWeek(amount){
 
 function renderWeekly(){
 
-  const start=currentWeekStart;
-
-  const end=new Date(start);
-
-  end.setDate(end.getDate()+6);
-
+  const start=new Date(currentWeekStart);
 
   document.getElementById("weekLabel")
     .textContent=formatShortRange(start);
@@ -2153,10 +2016,13 @@ function renderWeekly(){
   ];
 
 
+  const week=getWeekData();
+
   let html='<div class="weekgrid">';
 
   let total=0;
   let done=0;
+
   let study=0;
   let phone=0;
 
@@ -2169,20 +2035,43 @@ function renderWeekly(){
 
     const key=dateKey(d);
 
-    const x=getDay(key);
+    const tasks=week.days[i] || [];
 
-    total+=x.tasks.length;
+    total+=tasks.length;
 
-    done+=x.tasks.filter(
+    done+=tasks.filter(
       t=>t.done
     ).length;
 
-    study+=x.study.reduce(
-      (a,s)=>a+Number(s.mins||0),
-      0
-    );
 
-    phone+=Number(x.time.Phone||0);
+    /*
+      Study & Phone analysis comes from
+      actual Daily data for this date.
+      Weekly tasks themselves remain separate.
+    */
+
+    const dayData=app.days[key];
+
+    if(dayData){
+
+      if(Array.isArray(dayData.study)){
+
+        study+=dayData.study.reduce(
+          (sum,s)=>sum+Number(s.mins||0),
+          0
+        );
+
+      }
+
+      if(dayData.time){
+
+        phone+=Number(
+          dayData.time.Phone||0
+        );
+
+      }
+
+    }
 
 
     html+=`
@@ -2197,30 +2086,90 @@ function renderWeekly(){
           ${d.getDate()}
         </div>
 
+
         ${
-          x.tasks.length
+          tasks.length
           ?
-          x.tasks.map((t,j)=>`
+          tasks.map((t,j)=>`
 
             <div class="mini">
 
               <input
                 type="checkbox"
                 ${t.done?"checked":""}
-                onchange="weekToggle('${key}',${j})">
+                onchange="
+                  weekToggle(${i},${j})
+                ">
 
               <span
                 class="${t.done?"done":""}">
                 ${escapeHtml(t.text)}
               </span>
 
+              <button
+                class="delete"
+                onclick="
+                  deleteWeeklyTask(${i},${j})
+                ">
+                ×
+              </button>
+
             </div>
 
           `).join("")
+
           :
+
           `<div
-            style="font-size:9px;color:#aa9ba1;margin-top:9px">
+            style="
+              font-size:9px;
+              color:#aa9ba1;
+              margin-top:9px">
             No tasks
+          </div>`
+        }
+
+
+        ${
+          tasks.length<5
+          ?
+          `
+          <div
+            style="
+              display:flex;
+              gap:3px;
+              margin-top:7px">
+
+            <input
+              id="weeklyInput${i}"
+              type="text"
+              placeholder="Add task"
+              style="
+                padding:5px;
+                font-size:9px">
+
+            <button
+              class="btn"
+              style="
+                padding:5px 7px;
+                font-size:10px"
+              onclick="
+                addWeeklyTask(${i})
+              ">
+              ＋
+            </button>
+
+          </div>
+          `
+
+          :
+
+          `<div
+            style="
+              font-size:8px;
+              color:#927f88;
+              margin-top:7px">
+            5/5 tasks
           </div>`
         }
 
@@ -2230,7 +2179,9 @@ function renderWeekly(){
 
   }
 
+
   html+="</div>";
+
 
   document.getElementById("weekPlan")
     .innerHTML=html;
@@ -2239,11 +2190,14 @@ function renderWeekly(){
   document.getElementById("wTasks")
     .textContent=done+" / "+total;
 
+
   document.getElementById("wStudy")
     .textContent=formatMinutes(study);
 
+
   document.getElementById("wPhone")
     .textContent=formatMinutes(phone);
+
 
   document.getElementById("wPct")
     .textContent=
@@ -2251,28 +2205,10 @@ function renderWeekly(){
       ? Math.round(done/total*100)+"%"
       : "0%";
 
-}
+     }
 
-
-function weekToggle(key,index){
-
-  const x=getDay(key);
-
-  if(!x.tasks[index])return;
-
-  x.tasks[index].done=
-    !x.tasks[index].done;
-
-  saveApp();
-
-  renderWeekly();
-
-  if(key===todayKey()){
-    renderHome();
-  }
-
-}
-
+    
+  
 
 /* =====================================================
    MONTHLY
