@@ -336,46 +336,77 @@ textarea{
 }
 
 .weekgrid{
-  display:grid;
-  grid-template-columns:repeat(7,1fr);
-  gap:4px;
-  overflow-x:auto;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
 }
 
 .weekcol{
-  min-width:0;
+  width:100%;
   background:#fbf3f6;
-  border-radius:13px;
-  padding:7px 4px;
-  min-height:160px;
+  border-radius:16px;
+  padding:12px;
+  min-height:110px;
+  border:1px solid var(--line);
 }
 
 .weekday{
-  font-size:11px;
+  font-size:14px;
   font-weight:bold;
 }
 
 .date-small{
-  font-size:10px;
+  font-size:11px;
   color:var(--muted);
+  margin-top:2px;
 }
 
 .mini{
   display:flex;
-  gap:3px;
-  margin:7px 0;
-  font-size:9px;
-  line-height:1.2;
+  align-items:center;
+  gap:7px;
+  margin:8px 0;
+  padding:7px 8px;
+  background:white;
+  border-radius:10px;
+  font-size:12px;
+  line-height:1.3;
 }
 
 .mini input{
-  width:13px;
-  height:13px;
+  width:17px;
+  height:17px;
   margin:0;
   flex:none;
   accent-color:var(--mauve);
 }
 
+.mini span{
+  flex:1;
+  min-width:0;
+  word-break:break-word;
+}
+
+.mini .delete{
+  flex:none;
+  font-size:18px;
+}
+
+.week-add-row{
+  display:flex;
+  gap:7px;
+  margin-top:9px;
+}
+
+.week-add-row input{
+  flex:1;
+  min-width:0;
+  width:auto;
+}
+
+.week-add-row button{
+  flex:none;
+}
 .calendar-head{
   display:grid;
   grid-template-columns:repeat(7,1fr);
@@ -1661,22 +1692,14 @@ function setTime(category,value){
 
   const x=getDay(todayKey());
 
-  x.time[category]=
-    Math.max(0,Number(value)||0);
-
-  if(category==="Study" && x.study.length){
-
-    // Manual Study time and subtype total remain consistent:
-    // study time is represented by subtype entries.
-  }
+  x.time[category]=Math.max(0,Number(value)||0);
 
   saveApp();
 
   renderDaily();
   renderHome();
 
-}
-
+  }
 
 /* =====================================================
    DAILY RENDER
@@ -1779,26 +1802,56 @@ studyBox.innerHTML += `
 
 
   document.getElementById("timeRows")
-    .innerHTML=CATEGORIES.map(c=>`
+  .innerHTML=CATEGORIES.map(c=>{
 
+    const current=Number(x.time[c]||0);
+
+    let options="";
+
+    for(let h=0;h<=24;h++){
+
+      for(let m of [0,20,40]){
+
+        const mins=h*60+m;
+
+        if(mins>24*60) continue;
+
+        let label="";
+
+        if(h===0 && m===0){
+          label="0 min";
+        }else if(h===0){
+          label=m+" min";
+        }else if(m===0){
+          label=h+" hour";
+        }else{
+          label=h+"h "+m+"m";
+        }
+
+        options+=`
+          <option value="${mins}" ${mins===current?"selected":""}>
+            ${label}
+          </option>
+        `;
+      }
+    }
+
+    return `
       <div class="time-row">
 
         <label>
           ${EMOJIS[c]} ${c}
         </label>
 
-        <input
-          type="number"
-          min="0"
-          value="${x.time[c]||0}"
-          onchange="setTime('${c}',this.value)">
-
-        <span class="small">min</span>
+        <select onchange="setTime('${c}',this.value)">
+          ${options}
+        </select>
 
       </div>
+    `;
 
-    `).join("");
-
+  }).join("");
+  
 
   document.getElementById("planned")
     .value=x.planned||"";
@@ -2050,19 +2103,23 @@ function deleteWeeklyTask(dayIndex,taskIndex){
 }
 
 
-function renderWeekly(){
+
+   function renderWeekly(){
 
   const start=new Date(currentWeekStart);
 
   document.getElementById("weekLabel")
     .textContent=formatShortRange(start);
 
-
   const names=[
-    "Sat","Sun","Mon",
-    "Tue","Wed","Thu","Fri"
+    "Saturday",
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday"
   ];
-
 
   const week=getWeekData();
 
@@ -2070,10 +2127,8 @@ function renderWeekly(){
 
   let total=0;
   let done=0;
-
   let study=0;
   let phone=0;
-
 
   for(let i=0;i<7;i++){
 
@@ -2087,40 +2142,17 @@ function renderWeekly(){
 
     total+=tasks.length;
 
-    done+=tasks.filter(
-      t=>t.done
-    ).length;
-
-
-    /*
-      Study & Phone analysis comes from
-      actual Daily data for this date.
-      Weekly tasks themselves remain separate.
-    */
+    done+=tasks.filter(t=>t.done).length;
 
     const dayData=app.days[key];
 
-    if(dayData){
+    if(dayData && dayData.time){
 
-      if(Array.isArray(dayData.study)){
+      study+=Number(dayData.time.Study||0);
 
-        study+=dayData.study.reduce(
-          (sum,s)=>sum+Number(s.mins||0),
-          0
-        );
-
-      }
-
-      if(dayData.time){
-
-        phone+=Number(
-          dayData.time.Phone||0
-        );
-
-      }
+      phone+=Number(dayData.time.Phone||0);
 
     }
-
 
     html+=`
 
@@ -2131,9 +2163,16 @@ function renderWeekly(){
         </div>
 
         <div class="date-small">
-          ${d.getDate()}
+          ${d.toLocaleDateString(
+            undefined,
+            {
+              day:"numeric",
+              month:"short"
+            }
+          )}
         </div>
 
+        <div style="margin-top:8px">
 
         ${
           tasks.length
@@ -2145,20 +2184,16 @@ function renderWeekly(){
               <input
                 type="checkbox"
                 ${t.done?"checked":""}
-                onchange="
-                  weekToggle(${i},${j})
-                ">
+                onchange="weekToggle(${i},${j})">
 
-              <span
-                class="${t.done?"done":""}">
+              <span class="${t.done?"done":""}">
                 ${escapeHtml(t.text)}
               </span>
 
               <button
+                type="button"
                 class="delete"
-                onclick="
-                  deleteWeeklyTask(${i},${j})
-                ">
+                onclick="deleteWeeklyTask(${i},${j})">
                 ×
               </button>
 
@@ -2168,43 +2203,32 @@ function renderWeekly(){
 
           :
 
-          `<div
-            style="
-              font-size:9px;
-              color:#aa9ba1;
-              margin-top:9px">
-            No tasks
-          </div>`
+          `
+          <div
+            class="small"
+            style="margin-top:8px">
+            No tasks yet.
+          </div>
+          `
         }
 
+        </div>
 
         ${
           tasks.length<5
           ?
           `
-          <div
-            style="
-              display:flex;
-              gap:3px;
-              margin-top:7px">
+          <div class="week-add-row">
 
             <input
-  id="weeklyInput${i}"
-  type="text"
-  placeholder="Add task"
-  autocomplete="off"
-  style="
-    padding:5px;
-    font-size:9px">
+              id="weeklyInput${i}"
+              type="text"
+              placeholder="Add task...">
 
             <button
+              type="button"
               class="btn"
-              style="
-                padding:5px 7px;
-                font-size:10px"
-              onclick="
-                addWeeklyTask(${i})
-              ">
+              onclick="addWeeklyTask(${i})">
               ＋
             </button>
 
@@ -2213,13 +2237,13 @@ function renderWeekly(){
 
           :
 
-          `<div
-            style="
-              font-size:8px;
-              color:#927f88;
-              margin-top:7px">
+          `
+          <div
+            class="small"
+            style="margin-top:8px">
             5/5 tasks
-          </div>`
+          </div>
+          `
         }
 
       </div>
@@ -2228,25 +2252,19 @@ function renderWeekly(){
 
   }
 
-
   html+="</div>";
-
 
   document.getElementById("weekPlan")
     .innerHTML=html;
 
-
   document.getElementById("wTasks")
     .textContent=done+" / "+total;
-
 
   document.getElementById("wStudy")
     .textContent=formatMinutes(study);
 
-
   document.getElementById("wPhone")
     .textContent=formatMinutes(phone);
-
 
   document.getElementById("wPct")
     .textContent=
@@ -2254,9 +2272,7 @@ function renderWeekly(){
       ? Math.round(done/total*100)+"%"
       : "0%";
 
-     }
-
-    
+    } 
   
 
 /* =====================================================
