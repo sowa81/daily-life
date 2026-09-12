@@ -174,6 +174,30 @@ textarea{
   gap:7px;
   margin-top:10px;
 }
+  .study-add-box{
+  margin-top:12px;
+}
+
+.study-field{
+  margin-bottom:10px;
+}
+
+.study-field label{
+  display:block;
+  font-size:12px;
+  font-weight:bold;
+  margin-bottom:4px;
+}
+
+.study-field input,
+.study-field select{
+  width:100%;
+}
+
+.study-add-btn{
+  width:100%;
+  margin-top:2px;
+}
 
 .addrow input{flex:1}
 
@@ -639,34 +663,31 @@ placeholder="Add today's task...">
 
 <div class="study-add-box">
 
-  <input
-    id="studyType"
-    type="text"
-    placeholder="Enter subject e.g. Anatomy">
+  <div class="study-field">
+    <label>Subject</label>
+    <input id="studyType" type="text" placeholder="e.g. Anatomy">
+  </div>
 
-  <select id="studyMin">
-    <option value="" selected disabled>
-      Choose time
-    </option>
-    <option value="15">15 min</option>
-    <option value="30">30 min</option>
-    <option value="45">45 min</option>
-    <option value="60">1 hour</option>
-    <option value="90">1h 30m</option>
-    <option value="120">2 hours</option>
-    <option value="180">3 hours</option>
-    <option value="240">4 hours</option>
-  </select>
+  <div class="study-field">
+    <label>Time</label>
+    <select id="studyMin">
+      <option value="" selected disabled>Choose time</option>
+      <option value="15">15 min</option>
+      <option value="30">30 min</option>
+      <option value="45">45 min</option>
+      <option value="60">1 hour</option>
+      <option value="90">1h 30m</option>
+      <option value="120">2 hours</option>
+      <option value="180">3 hours</option>
+      <option value="240">4 hours</option>
+    </select>
+  </div>
 
-  <button
-    class="btn"
-    type="button"
-    onclick="addStudy()">
-    ＋
+  <button class="btn study-add-btn" type="button" onclick="addStudy()">
+    ＋ Add
   </button>
 
 </div>
-
 
 <div class="card">
 
@@ -1541,13 +1562,11 @@ function changeTaskCategory(i,value){
 ===================================================== */
 
 function addStudy(){
+  const input = document.getElementById("studyType");
+  const timeSelect = document.getElementById("studyMin");
 
-  const input=document.getElementById("studyType");
-  const type=input.value.trim();
-
-  const mins=Number(
-    document.getElementById("studyMin").value
-  );
+  const type = input.value.trim();
+  const mins = Number(timeSelect.value);
 
   if(!type){
     alert("Please enter the subject.");
@@ -1555,31 +1574,30 @@ function addStudy(){
     return;
   }
 
-  if(!mins || mins<1){
+  if(!mins){
     alert("Please choose study time.");
+    timeSelect.focus();
     return;
   }
 
-  const x=getDay(todayKey());
+  const x = getDay(todayKey());
 
   x.study.push({
-    type:type,
-    mins:mins
+    type: type,
+    mins: mins
   });
 
-  x.time.Study=
-    x.study.reduce(
-      (sum,s)=>sum+Number(s.mins||0),
-      0
-    );
+  x.time.Study = x.study.reduce(
+    (sum, s) => sum + Number(s.mins || 0),
+    0
+  );
 
-  input.value="";
-  document.getElementById("studyMin").value="";
+  input.value = "";
+  timeSelect.value = "";
 
   saveApp();
   renderDaily();
-
-}
+  }
 
 function deleteStudy(i){
 
