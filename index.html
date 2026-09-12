@@ -1593,62 +1593,65 @@ function changeTaskCategory(i,value){
    STUDY
 ===================================================== */
 
-function addStudy(){
-  const input = document.getElementById("studyType");
-  const timeSelect = document.getElementById("studyMin");
-
-  const type = input.value.trim();
-  const mins = Number(timeSelect.value);
+function addStudySubject(){
+  const input=document.getElementById("studyType");
+  const type=input.value.trim();
 
   if(!type){
-    alert("Please enter the subject.");
+    alert("Please enter a subject.");
     input.focus();
     return;
   }
 
+  const x=getDay(todayKey());
+
+  if(!Array.isArray(x.studySubjects)){
+    x.studySubjects=[];
+  }
+
+  x.studySubjects.push(type);
+
+  input.value="";
+
+  saveApp();
+  renderDaily();
+}
+
+
+function addStudyTime(){
+  const select=document.getElementById("studyMin");
+  const mins=Number(select.value);
+
   if(!mins){
-    alert("Please choose study time.");
-    timeSelect.focus();
+    alert("Please choose your total study time.");
+    select.focus();
     return;
   }
 
-  const x = getDay(todayKey());
+  const x=getDay(todayKey());
 
-  x.study.push({
-    type: type,
-    mins: mins
-  });
+  /*
+    Total study time for today.
+    If you add time again, it adds to the previous total.
+  */
+  x.time.Study=Number(x.time.Study||0)+mins;
 
-  x.time.Study = x.study.reduce(
-    (sum, s) => sum + Number(s.mins || 0),
-    0
-  );
-
-  input.value = "";
-  timeSelect.value = "";
+  select.value="";
 
   saveApp();
   renderDaily();
   }
 
-function deleteStudy(i){
-
+function deleteStudySubject(index){
   const x=getDay(todayKey());
 
-  x.study.splice(i,1);
+  if(!Array.isArray(x.studySubjects)) return;
 
-  x.time.Study=
-    x.study.reduce(
-      (sum,s)=>sum+Number(s.mins||0),
-      0
-    );
+  x.studySubjects.splice(index,1);
 
   saveApp();
-
   renderDaily();
-
-}
-
+      }
 
 /* =====================================================
    DAILY TIME
@@ -1751,42 +1754,28 @@ function renderDaily(){
   const studyBox=
     document.getElementById("studyRows");
 
+if(!x.studySubjects || x.studySubjects.length===0){
+  studyBox.innerHTML=
+    `<div class="empty">No subjects added yet.</div>`;
+}else{
+  studyBox.innerHTML=
+    `<div class="small" style="margin-bottom:6px">
+      Today's Subjects
+    </div>`+
+    x.studySubjects.map((subject,i)=>`
+      <div class="row" style="padding:7px 0;border-bottom:1px solid #f1e8eb">
+        <span>📚 ${escapeHtml(subject)}</span>
+        <button class="delete" onclick="deleteStudySubject(${i})">×</button>
+      </div>
+    `).join("");
+}
 
-  if(!x.study.length){
-
-    studyBox.innerHTML=
-      `<div class="empty">
-        No study time recorded yet.
-      </div>`;
-
-  }else{
-
-    studyBox.innerHTML=
-      x.study.map((s,i)=>`
-
-        <div
-          class="row"
-          style="padding:7px 0;border-bottom:1px solid #f1e8eb">
-
-          <span>
-            📚 ${escapeHtml(s.type)}
-          </span>
-
-          <span>
-            <b>${formatMinutes(s.mins)}</b>
-
-            <button
-              class="delete"
-              onclick="deleteStudy(${i})">
-              ×
-            </button>
-          </span>
-
-        </div>
-
-      `).join("");
-
-  }
+studyBox.innerHTML += `
+  <div class="row" style="margin-top:10px;padding-top:8px">
+    <span><b>⏱️ Total Study Time</b></span>
+    <span><b>${formatMinutes(x.time.Study||0)}</b></span>
+  </div>
+`;
 
 
   document.getElementById("timeRows")
