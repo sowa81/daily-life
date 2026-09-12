@@ -640,9 +640,10 @@ placeholder="Add today's task...">
 <div class="addrow">
 
 <input
-  id="studyType"
-  type="text"
-  placeholder="Subject...">
+id="studyType"
+type="text"
+placeholder="Subject..."
+autocomplete="off">
 
 <select id="studyMin">
 
@@ -2141,12 +2142,13 @@ function renderWeekly(){
               margin-top:7px">
 
             <input
-              id="weeklyInput${i}"
-              type="text"
-              placeholder="Add task"
-              style="
-                padding:5px;
-                font-size:9px">
+  id="weeklyInput${i}"
+  type="text"
+  placeholder="Add task"
+  autocomplete="off"
+  style="
+    padding:5px;
+    font-size:9px">
 
             <button
               class="btn"
